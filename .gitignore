@@ -216,3 +216,17 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+.env
+.venv/
+venv/
+__pycache__/
+*.pyc
+*.log
+logs/
+.playwright/
+.idea/
+.vscode/
+cookies/*
+!cookies/.gitkeep
+pw_profile/

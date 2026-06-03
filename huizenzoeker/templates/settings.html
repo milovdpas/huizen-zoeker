@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block title %}Instellingen — Huizen Zoeker{% endblock %}
+{% block content %}
+<div class="card">
+  <h2>Maximale prijs</h2>
+  <p class="muted">Boven dit bedrag worden geen e-mails verstuurd. 0 of leeg = geen limiet. Woningen worden wel altijd opgeslagen.</p>
+  <form method="post" class="row">
+    <input type="hidden" name="action" value="save_max_price">
+    <label>€ <input type="number" name="max_price" min="0" step="1" value="{{ max_price_eur }}"></label>
+    <button type="submit">Opslaan</button>
+  </form>
+</div>
+
+<div class="card">
+  <h2>E-mailadressen voor notificaties</h2>
+  <p class="muted">Iedereen op deze lijst krijgt een e-mail per nieuwe woning die binnen de maxprijs valt.</p>
+
+  <form method="post" class="row" style="margin-bottom:14px">
+    <input type="hidden" name="action" value="add_email">
+    <input type="email" name="email" placeholder="naam@example.com" required style="min-width:280px">
+    <button type="submit">Toevoegen</button>
+  </form>
+
+  {% if recipients %}
+    <table>
+      <thead><tr><th>E-mail</th><th></th></tr></thead>
+      <tbody>
+        {% for r in recipients %}
+          <tr>
+            <td>{{ r.email }}</td>
+            <td style="text-align:right">
+              <form method="post" style="display:inline">
+                <input type="hidden" name="action" value="delete_email">
+                <input type="hidden" name="id" value="{{ r.id }}">
+                <button type="submit" class="danger" onclick="return confirm('Verwijder {{ r.email }}?')">Verwijder</button>
+              </form>
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    <p class="muted">Nog geen ontvangers. Voeg er minstens 1 toe om e-mails te ontvangen.</p>
+  {% endif %}
+</div>
+{% endblock %}

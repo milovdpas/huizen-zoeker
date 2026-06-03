@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% block title %}Runs — Huizen Zoeker{% endblock %}
+{% block content %}
+<div class="card">
+  <div class="row" style="justify-content:space-between">
+    <div>
+      <h2 style="margin-bottom:4px">Scrape runs</h2>
+      <p class="muted" style="margin-top:0">Top 100. Klik <em>Opnieuw</em> om alleen die bron nu te draaien.</p>
+    </div>
+    <div class="row">
+      <form method="post" action="{{ url_for('web.refresh_funda_cookies_now') }}" style="margin:0">
+        <button type="submit" class="secondary">Funda-cookies verversen</button>
+      </form>
+      <form method="post" action="{{ url_for('web.run_now') }}" style="margin:0">
+        <button type="submit">Alle nu draaien</button>
+      </form>
+    </div>
+  </div>
+
+  {% if not runs %}
+    <p class="muted">Nog geen runs.</p>
+  {% else %}
+    <table>
+      <thead>
+        <tr>
+          <th>Bron</th>
+          <th>Gestart</th>
+          <th>Klaar</th>
+          <th>Status</th>
+          <th>Gevonden</th>
+          <th>Nieuw</th>
+          <th>Fout</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for r in runs %}
+          <tr>
+            <td>{{ r.source }}</td>
+            <td class="muted">{{ r.started_at | dt }}</td>
+            <td class="muted">{{ r.finished_at | dt }}</td>
+            <td><span class="pill {{ r.status }}">{{ r.status }}</span></td>
+            <td>{{ r.listings_found }}</td>
+            <td>{{ r.new_listings }}</td>
+            <td class="muted" style="max-width:280px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="{{ r.error_message or '' }}">
+              {{ r.error_message or '' }}
+            </td>
+            <td>
+              <form method="post" action="{{ url_for('web.run_source_now') }}" style="margin:0">
+                <input type="hidden" name="source" value="{{ r.source }}">
+                <button type="submit" class="secondary">Opnieuw</button>
+              </form>
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% endif %}
+</div>
+{% endblock %}

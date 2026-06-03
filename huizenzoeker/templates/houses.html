@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+{% block title %}Woningen — Huizen Zoeker{% endblock %}
+{% block content %}
+{% macro sort_header(label, key) %}
+  {%- set next_dir = 'asc' if (sort == key and direction == 'desc') else 'desc' -%}
+  {%- set arrow = '' -%}
+  {%- if sort == key -%}
+    {%- set arrow = ' ↓' if direction == 'desc' else ' ↑' -%}
+  {%- endif -%}
+  <a href="{{ url_for('web.houses', sort=key, dir=next_dir, **active_filters) }}"
+     style="color:inherit;text-decoration:none">
+    {{ label }}<span class="muted">{{ arrow }}</span>
+  </a>
+{% endmacro %}
+
+<div class="card">
+  <h2 style="margin-bottom:6px">Gevonden woningen</h2>
+  <p class="muted" style="margin-top:0">Top 200. Klik op een kolomkop om te sorteren.</p>
+
+  <form method="get" action="{{ url_for('web.houses') }}" class="row" style="margin-bottom:14px">
+    <input type="hidden" name="sort" value="{{ sort }}">
+    <input type="hidden" name="dir" value="{{ direction }}">
+    <label>Min € <input type="number" name="min_price" min="0" step="1" value="{{ filters.min_price }}" style="width:90px"></label>
+    <label>Max € <input type="number" name="max_price" min="0" step="1" value="{{ filters.max_price }}" style="width:90px"></label>
+    <label>Eerst gezien sinds <input type="date" name="since" value="{{ filters.since }}"></label>
+    <button type="submit">Filter</button>
+    {% if active_filters %}
+      <a href="{{ url_for('web.houses', sort=sort, dir=direction) }}" class="button secondary" style="text-decoration:none">Reset</a>
+    {% endif %}
+  </form>
+
+  {% if not houses %}
+    <p class="muted">
+      {% if active_filters %}
+        Geen woningen voldoen aan de filters.
+      {% else %}
+        Nog geen woningen gevonden. De eerste scrape duurt ongeveer 1-2 minuten.
+      {% endif %}
+    </p>
+  {% else %}
+    <p class="muted" style="margin-top:0">
+      {{ houses|length }} resultaten{% if active_filters %} (gefilterd){% endif %}.
+    </p>
+    <table>
+      <thead>
+        <tr>
+          <th>Adres</th>
+          <th>Plaats</th>
+          <th>{{ sort_header('Prijs', 'price') }}</th>
+          <th>Bron</th>
+          <th>{{ sort_header('Eerst gezien', 'first_seen') }}</th>
+          <th>Status</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for h in houses %}
+          <tr>
+            <td>{{ h.address_raw }}</td>
+            <td>{{ h.city or '-' }}</td>
+            <td>{{ h.price_cents | eur }}</td>
+            <td><span class="pill gray">{{ h.source }}</span></td>
+            <td class="muted">{{ h.first_seen | dt }}</td>
+            <td>
+              {% if h.notified %}
+                <span class="pill ok">Gemeld</span>
+              {% else %}
+                <span class="pill gray">Niet gemeld</span>
+              {% endif %}
+            </td>
+            <td><a href="{{ h.source_url }}" target="_blank" rel="noopener">Bekijk &rarr;</a></td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% endif %}
+</div>
+{% endblock %}

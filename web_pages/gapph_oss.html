@@ -1,0 +1,950 @@
+
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<script type="text/javascript" src="/ci/cookiebar/cookiebar-latest.min.js?forceLang=nl&theme=momh&tracking=1&always=1&showNoConsent=1&noConfirm=1&hideDetailsBtn=1&showPolicyLink=1&privacyPage=cookies"></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="author" content="BBE">
+<meta name="theme-color" content="#008bd2">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<title>Woning zoeken</title>
+		<meta name="description" content="Gapph vastgoedbeheer. Voor antikraak, leegstandbeheer of het huren van woonruimte of werkruimte kun je bij ons terecht!">
+			<meta name="keywords" content="wonen, kamer,  appartement, werkruimte, tijdelijk huren, tijdelijk, huren, leegstandbeheer, leegstandsbeheer, anti-kraak, antikraak, huis huren, huurhuis, huurwoning, huurwoningen, woning huren">
+			<meta property="og:title" content="Gapph beheer en verhuur van leegstaand vastgoed">
+			<meta property="og:description" content="Gapph is uw dienstverlener voor antikraak wonen, tijdelijk beheer en tijdelijk verhuur van leegstand in Nederland. Voor leegstandbeheer of het huren van woonruimte of werkruimte kunt u bij ons terecht!">
+			<meta property="og:url" content="https://www.gapph.nl">
+<meta property="og:image" content="https://www.gapph.nl/Gapph-Vastgoedbeheer.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="435" />
+<meta property="og:image:height" content="500" />
+<meta property="og:image:alt" content="Gapph Vastgoedbeheer Logo" />
+<link rel="dns-prefetch" href="https://https://a.tile.osm.org/">
+<link rel="dns-prefetch" href="https://https://b.tile.osm.org/">
+<link rel="dns-prefetch" href="https://https://c.tile.osm.org/">
+<link rel="dns-prefetch" href="https://https://a.tile.openstreetmap.de">
+<link rel="dns-prefetch" href="https://https://b.tile.openstreetmap.de">
+<link rel="dns-prefetch" href="https://https://c.tile.openstreetmap.de">
+
+
+<base href="https://www.gapph.nl/">
+
+<link href="https://www.gapph.nl/styles.css?v=24" rel="stylesheet" media="screen">
+<link href="ci/javascripts/animations/aos.css" rel="stylesheet">
+
+<link rel="icon" type="image/x-icon" sizes="32x32" href="/favicon.ico">
+<link rel="icon" type="image/svg+xml" href="/icon.svg" >
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="manifest" href="/manifest.webmanifest">
+
+
+<script defer src="ci/javascripts/alpine.js"></script>
+<script src="https://www.gapph.nl/ci/javascripts/jquery-3.6.0.min.js"></script>
+<script src="https://www.gapph.nl/ci/javascripts/bigtext.js"></script>
+
+<script>
+$(document).ready(function() {
+	
+	$(".target_blank").click(function(){
+		window.open($(this).find("a").attr("href"), '_blank');
+		return false;
+	});
+
+	$(".target_link").click(function(){
+		window.location=$(this).find("a").attr("href");
+		return false;
+	});
+
+});
+</script>
+
+</head>
+<body class="mt-16 md:mt-24 bg-white ">
+<svg height="0" width="0" viewBox="0 0 446.12 252.02">
+    <defs>
+    <clipPath id="svgvoorgrond" clipPathUnits="objectBoundingBox" transform="scale(0.00224154935, 0.00396793905)">
+      <path fill="#FFFFFF" stroke="#000000" stroke-width="1.5794" stroke-miterlimit="10" d="M420.45,233.55,27.13,252c-5.93.31-11.11-3.88-11.48-9.18L0,21.61A10.91,10.91,0,0,1,10.94,10L436.1,0a9.64,9.64,0,0,1,10,10.61l-14.9,213.09C430.72,228.88,426,233.29,420.45,233.55Z"></path>
+    </clipPath>
+    </defs>
+</svg><style>
+.bs-button:hover svg{ stroke: rgba(43,106,176);}
+.bs-button:hover .menutext{ color: rgba(43,106,176); border-bottom: 2px solid rgba(43,106,176);}
+.menutext:hover{ color: rgba(43,106,176); border-bottom: 2px solid rgba(43,106,176);}
+.bs-cvv:hover .bs-h{fill:rgba(229,231,235);}
+.bs-active svg{ stroke: rgba(43,106,176);}
+.bg-active { fill: #2b6ab0; stroke: #2b6ab0; width: 30px; height: 30px; }
+@media (min-width:768px){ .bg-active { width: 24px; height: 24px;} }
+@media (min-width:768px){ .bs-slogan{ margin-top:5px;}}
+
+.bs-logo-img { width: 70px; height: 81px; } 
+.zonecontainer{
+   position: absolute;
+   top: -11px;
+   width:86px;height:86px;
+   z-index: 52;
+}
+.logocontainer{
+   position: absolute;
+   top: 0px;
+   width:86px;height:86px;
+   z-index: 57;
+}
+.shade{
+  filter: drop-shadow(2px 2px 5px rgba(0,0,0,0.3));
+} 
+.schaduwlijn{
+  width:100%;
+  background-color:transparent;
+  height:10px;
+  position:absolute;
+  box-shadow:inset 0 11px 8px -10px rgba(0,0,0,0.3);
+  z-index: 52;
+}
+.wittebalk{width:120px;height:64px;background-color:white;position:absolute;top:0px;z-index: 55;}
+.positionouter { margin-left:auto; margin-right:auto; width:86px;}
+.positionwhite { margin-left:auto; margin-right:auto; width:100px;}
+@media (min-width:768px){
+   .zonecontainer { width:122px;height:122px; }
+   .logocontainer { width:122px;height:122px; top: 3px; }
+   .positionouter { width: 122px; }
+   .positionwhite { width: 200px;}
+   .wittebalk { width:200px; height:96px; }
+   .bs-logo-img { width: 100px; height: 116px; }
+}
+</style>
+    <div class="fixed top-0 w-full h-16 mb-3 bg-white z-5000 bs-menu bs-font md:h-24" data-sticky >
+      <div class="px-2 mx-auto bs-px2">
+         <div class="grid h-16 grid-cols-3 bs-grid md:h-24">
+
+            <div class="flex items-center justify-start bs-column-one md:h-24"> 
+               <div class="flex items-center justify-start w-full bs-wrap-one">
+
+                  <div data-xdata="menu" class="relative">
+                                          <button aria-label="Menu" name="Menu" data-xclick="menu_toggle"  data-xclass="menu? 'bs-active' : ''" class="m-2 text-sm text-gray-700 bs-button focus:outline-hidden">
+                        <svg class="w-6 h-6 mx-auto bs-menu-icon xl:hidden bs-hidden-lg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                           <path data-xshow="!menu" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                                                      <path data-xshow="menu" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" style="display:none" />
+                        </svg>
+                        <span class="hidden md:inline-flex menutext bs-lh" data-xclass="menu? 'menu-active' : ''">Menu</span>
+                     </button>
+                     <div data-xshow="menu" style="display: none;" data-xtransition:enter="transition ease-in-out duration-300" data-xtransition:enter-start="opacity-0 transform scale-x-0 -translate-x-1/2" data-xtransition:enter-end="opacity-100 transform scale-x-100 translate-x-0" data-xtransition:leave="transition ease-in-out duration-300" data-xtransition:leave-start="opacity-100 transform scale-x-100 translate-x-0" data-xtransition:leave-end="opacity-0 transform scale-x-0 -translate-x-1/2" data-xclick.away="menu_away" class="left-0 border-r-2 menu-panel">
+   <div class="flex flex-col h-full p-4 bs-panel-in">
+
+         <div>
+            <a class="flex p-2 border-b hover:bg-gray-200 bs-home" href='https://www.gapph.nl/' title='Gapph Vastgoedbeheer home'>
+                              <svg width="22" height="22" viewBox="0 0 24 24"><path d="M21 13v10h-6v-6h-6v6h-6v-10h-3l12-12 12 12h-3zm-1-5.907v-5.093h-3v2.093l3 3z" fill="#374151"/></svg>
+            </a>
+         </div>
+
+
+      <div data-xdata="{ open: false }">
+                  <div data-xclick="open = !open" class="menu-acc-main" data-xclass="open? 'menu-acc-active' : ''">
+            Aanbod
+            <span data-xclass="open ? 'chevron-up' : 'chevron-down'" class="w-5 h-5"></span>
+         </div>
+         <div data-xshow="open" class="pl-4 menu-acc-active">
+            <div><a href="woonruimte" class="menu-acc-sub">Woonruimte</a></div>
+            <div><a href="werkruimte" class="menu-acc-sub">Werkruimte</a></div>
+            <div><a href="werkwijze" class="menu-acc-sub">Werkwijze</a></div>
+            <div><a href="veelgestelde-vragen" class="menu-acc-sub">Veelgestelde vragen</a></div>
+         </div>
+      </div>
+      <div><a href="inschrijven" class="menu-acc-sub">Inschrijven</a></div>
+      <div data-xdata="{ open: false }">
+                  <div data-xclick="open = !open" class="menu-acc-main" data-xclass="open? 'menu-acc-active' : ''">
+            Onze diensten
+            <span data-xclass="open ? 'chevron-up' : 'chevron-down'" class="w-5 h-5"></span>
+         </div>
+         <div data-xshow="open" class="pl-4 menu-acc-active">
+            <div><a href="onze-diensten" class="menu-acc-sub">Vastgoedbeheer</a></div>
+            <div><a href="aanvullende-diensten" class="menu-acc-sub">Aanvullende diensten</a></div>
+            <div><a href="gapph-together" class="menu-acc-sub">Gapph Together</a></div>
+            <div><a href="gapph-modular" class="menu-acc-sub">Gapph Modular</a></div>
+         </div>
+      </div>
+      <div><a href="nieuws" class="menu-acc-sub">Nieuws</a></div>
+            <div data-xdata="{ open: false }">
+                  <div data-xclick="open = !open" class="menu-acc-main" data-xclass="open? 'menu-acc-active' : ''">
+            Over ons
+            <span data-xclass="open ? 'chevron-up' : 'chevron-down'" class="w-5 h-5"></span>
+         </div>
+         <div data-xshow="open" class="pl-4 menu-acc-active">
+            <div><a href="over-gapph" class="menu-acc-sub">Thuis in elke ruimte</a></div>
+            <div><a href="team" class="menu-acc-sub">Ons team</a></div>
+            <div><a href="werken-bij-gapph" class="menu-acc-sub">Werken bij Gapph</a></div>
+         </div>
+      </div>
+      <div><a class="menu-acc-sub" href="reparatieverzoek">Reparatieverzoek</a></div>
+      <div data-xdata="{ open: false }">
+         <div data-xclick="open = !open" class="menu-acc-main" data-xclass="open? 'menu-acc-active' : ''">
+            Service en support
+            <span data-xclass="open ? 'chevron-up' : 'chevron-down'" class="w-5 h-5"></span>
+         </div>
+         <div data-xshow="open" class="pl-4 menu-acc-active">
+           
+               <div><a href="klantenservice" class="menu-acc-sub">Hoe kunnen wij jou helpen?</a></div>
+               <div><a href="veelgestelde-vragen" class="menu-acc-sub">Veelgestelde vragen</a></div>
+               <div><a href="reparatieverzoek" class="menu-acc-sub">Reparatieverzoek</a></div>
+               <div><a href="feedback-delen" class="menu-acc-sub">Feedback delen</a></div>
+                               
+         </div>
+      </div>
+      <div data-xdata="{ open: false }">
+         <div data-xclick="open = !open" class="menu-acc-main" data-xclass="open? 'menu-acc-active' : ''">
+            Contact
+            <span data-xclass="open ? 'chevron-up' : 'chevron-down'" class="w-5 h-5"></span>
+         </div>
+         <div data-xshow="open" class="pl-4 menu-acc-active">      
+               <div><a href="contact" class="menu-acc-sub">Contact opnemen</a></div>
+               <div><a href="vestigingen" class="menu-acc-sub">Vestigingen</a></div>
+         </div>
+      </div>
+   </div>
+</div>                  </div>
+                                          
+                  <div data-xdata="menu" class="relative">
+                     <button aria-label="Menuwoon" name="Menuwoon" data-xclick="menu_toggle" data-xclass="menu? 'bs-active' : ''" class="m-2 text-sm text-gray-700 bs-button focus:outline-hidden">
+                        <span class="menu-item bs-menu-item menutext bs-lh" data-xclass="menu? 'menu-active' : ''">Aanbod</span>
+                     </button>
+                     <div data-xshow="menu" style="display: none;" data-xtransition:enter="transition ease-in-out duration-300" data-xtransition:enter-start="opacity-0 transform scale-x-0 -translate-x-1/2" data-xtransition:enter-end="opacity-100 transform scale-x-100 translate-x-0" data-xtransition:leave="transition ease-in-out duration-300" data-xtransition:leave-start="opacity-100 transform scale-x-100 translate-x-0" data-xtransition:leave-end="opacity-0 transform scale-x-0 -translate-x-1/2" data-xclick.away="menu_away" class="left-0 border-r-2 menu-panel">
+                        <div class="flex flex-col p-4 bs-panel-in">
+                  
+                              <div><a href="woonruimte" class="menu-acc-sub">Woonruimte</a></div>
+                              <div><a href="werkruimte" class="menu-acc-sub">Werkruimte</a></div>
+                              <div><a href="werkwijze" class="menu-acc-sub">Werkwijze</a></div>
+                              <div><a href="veelgestelde-vragen" class="menu-acc-sub">Veelgestelde vragen</a></div>
+                    
+                        </div>
+                     </div>
+                  </div>
+
+                  <div data-xdata="menu" class="relative">
+                     <button aria-label="Menudiensten" name="Menudiensten" data-xclick="menu_toggle" data-xclass="menu? 'bs-active' : ''" class="m-2 text-sm text-gray-700 bs-button focus:outline-hidden">
+                        <span class="menu-item bs-menu-item menutext bs-lh" data-xclass="menu? 'menu-active' : ''">Diensten</span>
+                     </button>
+                     <div data-xshow="menu" style="display: none;" data-xtransition:enter="transition ease-in-out duration-300" data-xtransition:enter-start="opacity-0 transform scale-x-0 -translate-x-1/2" data-xtransition:enter-end="opacity-100 transform scale-x-100 translate-x-0" data-xtransition:leave="transition ease-in-out duration-300" data-xtransition:leave-start="opacity-100 transform scale-x-100 translate-x-0" data-xtransition:leave-end="opacity-0 transform scale-x-0 -translate-x-1/2" data-xclick.away="menu_away" class="left-0 border-r-2 menu-panel">
+                        <div class="flex flex-col p-4 bs-panel-in">
+                        
+                              <div><a href="onze-diensten" class="menu-acc-sub">Vastgoedbeheer</a></div>
+                              <div><a href="aanvullende-diensten" class="menu-acc-sub">Aanvullende diensten</a></div>
+                              <div><a href="gapph-together" class="menu-acc-sub">Gapph Together</a></div>
+                              <div><a href="gapph-modular" class="menu-acc-sub">Gapph Modular</a></div>
+                      
+                        </div>
+                     </div>
+                  </div>
+                            
+                  
+                  <div data-xdata="menu" class="relative">
+                     <button aria-label="Menudienst" name="Menudienst" data-xclick="menu_toggle" data-xclass="menu? 'bs-active' : ''" class="m-2 text-sm text-gray-700 bs-button focus:outline-hidden">
+                        <span class="menu-item bs-menu-item menutext bs-lh" data-xclass="menu? 'menu-active' : ''">Service&nbsp;en&nbsp;support</span>
+                     </button>
+                     <div data-xshow="menu" style="display: none;" data-xtransition:enter="transition ease-in-out duration-300" data-xtransition:enter-start="opacity-0 transform scale-x-0 -translate-x-1/2" data-xtransition:enter-end="opacity-100 transform scale-x-100 translate-x-0" data-xtransition:leave="transition ease-in-out duration-300" data-xtransition:leave-start="opacity-100 transform scale-x-100 translate-x-0" data-xtransition:leave-end="opacity-0 transform scale-x-0 -translate-x-1/2" data-xclick.away="menu_away" class="left-0 border-r-2 menu-panel">
+                        <div class="flex flex-col p-4 bs-panel-in">
+                  
+                              <div><a href="klantenservice" class="menu-acc-sub">Hoe kunnen wij jou helpen?</a></div>
+                              <div><a href="veelgestelde-vragen" class="menu-acc-sub">Veelgestelde vragen</a></div>
+                              <div><a href="reparatieverzoek" class="menu-acc-sub">Reparatieverzoek</a></div>
+                              <div><a href="feedback-delen" class="menu-acc-sub">Feedback delen</a></div>
+                    
+                        </div>
+                     </div>
+                  </div>
+
+               </div> 
+            </div> 
+            <div class="relative bs-column-two "> 
+            </div> 
+            <div class="flex items-center justify-end bs-column-three"> 
+               <div class="flex flex-row items-center">
+                  
+                  <div data-xdata="{ searchiv: false }" class="relative pr-1 bs-menu-button bs-zoek">
+                     <button aria-label="Zoeken" name="Zoeken" data-xclick="searchiv = !searchiv" data-xclass="searchiv? 'bs-active' : ''" class="m-2 text-xs text-gray-700 bs-button focus:outline-hidden">
+                        <svg class="w-6 h-6 mx-auto bs-menu-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                        </svg>
+                        <span class="hidden md:inline-flex menutext bs-lh" data-xclass="searchiv? 'menu-active' : ''">Zoeken</span>
+                     </button>
+
+
+                     <div data-xshow="searchiv; if (searchiv) $nextTick(()=>{$refs.mnzoeken.focus()});"  data-xtransition:enter="transition ease-in-out duration-300" data-xtransition:enter-start="opacity-0 transform scale-y-0 -translate-y-1/2" data-xtransition:enter-end="opacity-100 transform scale-y-100 translate-y-0" data-xtransition:leave="transition ease-in-out duration-300" data-xtransition:leave-start="opacity-100 transform scale-y-100 translate-y-0" data-xtransition:leave-end="opacity-0 transform scale-y-0 -translate-y-1/2" data-xclick.away="searchiv = false" class="fixed left-0 z-50 flex justify-center w-full top-16 md:top-24 border-t-blauw-licht border-t-[20px] md:border-t-[32px] bss-search-panel" style="display:none;">
+
+                        <div class="relative flex justify-center w-full py-1 border-b-2 bg-smaragd-licht border-smaragd bs-search-form">
+                      
+								   <div class="flex items-center justify-center w-full px-3 py-1 md:w-3/6 bs-zoeken">
+                           <form action="zoeken/resultaat" accept-charset="utf-8" method="get" class="flex items-center justify-center w-full">
+									
+                           <div class="flex items-center w-full mt-1 bg-white rounded-xs blog-fix-search">
+                              <div class="w-full bs-zoeken">
+                                 <input data-xref="mnzoeken" type="search" class="w-full px-4 py-2 border-gray-300 rounded-l form-control blog-fix focus:border-gray-300 focus:ring-0" placeholder="Vul hier je trefwoord(en) in..." name="search" id="zoeken" data-target="klantenservice" value="" onfocus="if (this.value==this.defaultValue) this.select()">
+                              </div>
+										<div>
+                                 <button aria-label="Zoek" name="Zoek" id="zoekknop" type="submit" class="flex items-center justify-center w-auto px-4 py-2 text-gray-700 bg-gray-100 rounded-r h-11 btn btn-lg btn-default">
+                                 Zoek
+                                 </button>
+                              </div>
+                              
+                                                            
+									</div>                           
+
+                           </form>
+								</div>
+                        </div>
+                     </div>
+
+                  </div>     
+                  <div data-xdata="menu" class="relative">
+                    
+                     <button aria-label="Mijn Gapph" name="Mijn Gapph" data-xclick="menu_toggle" data-xclass="menu? 'bs-active' : ''" class="m-2 text-xs text-gray-700 bs-button focus:outline-hidden" id="mijniv">
+                                                <svg id="myicon" class="w-6 h-6 mx-auto bs-menu-icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M20.452 22.072v-2.109c0-2.329-1.926-4.217-4.302-4.217H7.547c-2.376 0-4.302 1.888-4.302 4.217v2.109"/><circle cx="12" cy="7" r="4" transform="matrix(1.07545 0 0 1.05436 -1.057 -.07)"/></svg>
+                        <span class="hidden md:inline-flex menutext bs-lh" data-xclass="menu? 'menu-active' : ''">Mijn Gapph</span>
+                     </button>
+                    
+                     <div data-xshow="menu" style="display:none;" data-xtransition:enter="transition ease-in-out duration-300" data-xtransition:enter-start="opacity-0 transform scale-x-0 translate-x-1/2" data-xtransition:enter-end="opacity-100 transform scale-x-100 translate-x-0" data-xtransition:leave="transition ease-in-out duration-300" data-xtransition:leave-start="opacity-100 transform scale-x-100 translate-x-0" data-xtransition:leave-end="opacity-0 transform scale-x-0 translate-x-1/2" data-xclick.away="menu_away" class="right-0 border-l-2 menu-panel">
+   <div class="flex flex-col p-4 bs-panel-in">
+      <div>
+         <a href="inloggen">
+            <h2 class="flex p-2 text-2xl border-b bs-menu-title text-rubine">Mijn Gapph</h2>
+         </a>
+      </div>
+     
+       
+      
+      <div class="logout_item" style="display:none">
+         <div><a class="menu-acc-sub" href="mijngapph/overzicht">Overzicht</a></div>
+         <div><a class="menu-acc-sub" href="mijngapph/mijngegevens">Gegevens</a></div>
+         <div><a class="menu-acc-sub" href="mijngapph/documenten">Reacties</a></div>
+         <div><a class="menu-acc-sub" href="mijngapph/documenten/algemeen">Documenten</a></div>
+         <div>
+            <a class="menu-acc-sub" href="mijngapph/notificaties">Notificaties
+                        </a>
+         </div>
+         <div><a class="menu-acc-sub" href="mijngapph/mijninstellingen">Instellingen</a></div>
+                  <div><a class="menu-acc-sub" href="inloggen/uitloggen">Uitloggen</a></div>
+      </div>
+      
+      <div class="login_item">
+         <div><a href="login" class="menu-acc-sub">Inloggen</a></div>
+         <div><a href="inschrijven" class="menu-acc-sub">Inschrijven</a></div>
+               </div>
+
+   </div>
+</div>                  </div>
+                  
+               
+
+                  
+                  <a class="cursor-pointer beheer_item" href="beheer/main" style="display: none;text-decoration:none;">
+                     <div class="px-4 text-center text-white rounded-xs bs-beheer bg-smaragd-licht hover:bg-blauw-lichter menu-item bs-menu-item hidden-xs hidden-sm hidden-md">BEHEER</div>
+                  </a>
+                       
+               </div> 
+            
+
+               
+            </div> 
+            
+
+
+         </div> 
+         
+      </div>
+
+            <div class="schaduwlijn"></div>
+
+      <div class="positionwhite">
+         <div class="wittebalk"></div>
+      </div>
+      
+      <div class="positionouter">
+         
+         <div class="zonecontainer shade">
+            <svg class="w-full" style="enable-background:new 0 0 374.6 432.5" viewBox="14 15 347 401"><style>.st5{fill:#6dcaf3}.st93{fill:#456ca5}.st95{fill:#fff}</style><path d="m13.943 315.773 173.441 100.126 173.559-100.126V115.408L187.502 15.285 13.943 115.408v200.365z" style="fill:#fff"/></svg>
+         </div>
+         <div class="logocontainer">
+            <a href='https://www.gapph.nl/' title='Gaphh Vastgoedbeheer'>                <div class="flex justify-center w-full bs-logo">
+                  <img class="bs-logo-img" src="https://www.gapph.nl/ci/images/logos/gapph-vastgoedbeheer-nozone.svg" alt="Gapph Vastgoedbeheer" title="Gapph Vastgoedbeheer" onerror="this.src='https://www.gapph.nl/ci/images/logos/gapph-vastgoedbeheer-nozone.png'">
+               </div>
+            </a>
+         </div>
+      </div>
+      
+   </div>
+   
+<style>
+
+</style>
+<script>
+function filter()
+{
+	parent.location='/filter/zoeken';
+}
+</script>
+
+<div class="mt-10 shadow-xs">		
+		<div class="flex flex-wrap items-center justify-center p-3 mx-auto" >
+
+		
+								<form action="woonruimte/zoeken" accept-charset="utf-8" method="get" class="flex items-center justify-center w-full">
+									<div class="flex items-center w-full mt-1 mb-4 bg-white rounded-xs md:w-1/3">
+										<div class="flex flex-row w-full">
+											<div class="relative w-full">
+												<input id="azoeken" type="text" class="w-full px-4 py-4 border-gray-200 rounded-l-lg focus:border-gray-300 focus:ring-0" placeholder="Plaatsnaam" name="region_search" data-target="klantenservice" value="oss" onfocus="if (this.value==this.defaultValue) this.select()">
+												<div id="aclear" class="absolute top-0 right-0 mt-3 mr-4 text-gray-400 cursor-pointer hover:text-gray-600" aria-label="Clear search" style="display:none">
+													<svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+  														<path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+													</svg>
+												</div>
+											</div>
+											<button id="zoekknop" class="px-8 text-white rounded-r-lg bg-smaragd focus:outline-hidden">
+												Zoek
+											</button>
+										</div>
+									</div>    
+								</form>
+							
+		</div>
+	</div>
+	
+<div class="my-10 iv-container">
+	<div class="grid gap-1 mt-10 sm:grid-cols-2 lg:grid-cols-3">
+		 
+
+	<div class="w-full p-2 target_link " data-aos="fade-up">
+		<div class="overflow-hidden p-2 h-full">
+			<div class="h-full relative bg-white rounded-lg shadow-md card-zoom ">
+				<div class="overflow-hidden bg-gray-200 rounded-t-lg ">
+				
+			<picture>
+		        <!-- webp -->
+		        <source type="image/webp" media="(min-width: 360px)" srcset="images/woonruimte/tijdelijke-huurwoning-vinkel-1845-19436-400.webp 1x,images/woonruimte/tijdelijke-huurwoning-vinkel-1845-19436-800.webp 2x">
+		        <source type="image/webp" srcset="images/woonruimte/tijdelijke-huurwoning-vinkel-1845-19436-300.webp 1x,images/woonruimte/tijdelijke-huurwoning-vinkel-1845-19436-400.webp 2x">
+		        <!-- jpg fallback -->
+		        <source type="image/jpeg" media="(min-width: 360px)" srcset="images/woonruimte/tijdelijke-huurwoning-vinkel-1845-19436-400.jpg 1x,images/woonruimte/tijdelijke-huurwoning-vinkel-1845-19436-800.jpg 2x">
+		        <source type="image/jpeg" srcset="images/woonruimte/tijdelijke-huurwoning-vinkel-1845-19436-300.jpg 1x,images/woonruimte/tijdelijke-huurwoning-vinkel-1845-19436-400.jpg 2x">
+		        <!-- img container -->
+		        <img loading="lazy" class="zoom" width="100%" style="width:100%" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="tijdelijke verhuur Leegstandwet Vinkel">
+			</picture>				</div>
+				
+								<div class="ribbon"><span>&euro;&nbsp;499,-</span></div> 
+								<img loading="lazy" class="w-full" src="/ci/images/bedrijven/big-shadow.png" alt="schaduw" width="300" height="10">
+				<div class="p-6">
+										<h2 class="mb-1 text-3xl font-medium text-gray-900 title-font">Vinkel</h2>
+					<h3 class="mb-3 text-xl font-medium tracking-widest">
+						<a class="inline-flex items-center text-gray-400 title-font md:mb-2 lg:mb-0" href="woonruimte/tijdelijk-huren/vinkel/1845" >
+							Tijdelijke huurwoning						</a>
+					</h3>
+					
+					<div class="mb-10">
+					<p class="text-xl leading-relaxed">
+						Ruim appartement van 80m², nabij Den Bosch					</p>
+					</div>
+					<div class="absolute bottom-6 px-6 w-full">
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	</div>
+	</div><div class="w-full" id="loadtable"></div><div class="mt-10 ddsection-smaragd ddcentreren bg-smaragd">
+  <div class="container mx-auto">
+	
+		<div class="flex justify-center">
+			<div class="inline-block w-24 overflow-hidden">
+				<div class="h-16 origin-top-right transform rotate-45 bg-white "></div>
+			</div>
+		</div>
+		<div class="flex flex-col">
+
+			<div class="p-6 mx-auto text-center iv-prose">
+				
+				<h2 style="color:white;" >Hoe kan ik reageren op een woonruimte?</h2> 
+				<p class="text-white">
+					Om te reageren op een woonruimte, kamer, appartement (eigenlijk al onze ruimtes) heb je een Mijn Gapph account nodig. Met dit account kun je inloggen, reageren op ruimtes en instellingen voor e-mailalerts aanpassen. Tevens kun je je documenten direct uploaden met ons uploadsysteem. Het aanmaken van een account is vrij simpel en kost slechts 25 euro voor een heel jaar.
+				</p>
+
+			</div>
+			  
+   		<div class="flex justify-center p-6 mb-6 md:my-10">
+      		<a class="button-rubine lg:px-24" href="https://www.gapph.nl/inschrijven/">Inschrijven</a>
+   		</div>
+		</div>
+
+    
+  </div>
+</div>
+<div class="bg-white">
+  <div class="container mx-auto">
+	  
+      <div class="flex justify-center">
+			<div class="inline-block w-24 overflow-hidden">
+				<div class="h-16 origin-top-right transform rotate-45 bg-smaragd "></div>
+			</div>
+		</div>
+      <div class="px-6 pt-6 mb-0! iv-prose">
+        <h2 class="mb-0!">Tijdelijke woninghuur en antikraak</h2>
+      </div>
+
+		<div class="flex flex-wrap md:flex-row">
+			<div class="w-full md:pr-4 lg:w-1/2">
+		
+				<div class="px-6 iv-prose">
+					<h3>Soorten bewoning</h3>
+					<p>Gapph beheert woonruimtes in heel Nederland. Het kan gaan om vrijstaande- of rijtjeshuizen of boerderijen, maar soms lenen panden als scholen, kantoren, kerken en zelfs zwembaden zich ook voor bewoning. Om ervoor te zorgen dat deze panden ook buiten werktijden bewaakt worden, kiezen we er regelmatig voor deze tijdelijk te laten bewonen door huiswachten ofwel bewoners. Door de panden tijdelijk te bewonen is er permanent bewaking aanwezig en dat is exact wat wij en onze opdrachtgevers zoeken voor deze panden. </p>
+					<h3>Tijdelijk verhuur</h3>
+					<p>
+					Een woonruimte die tijdelijk wordt verhuurd is vaak gekoppeld aan een contract die gebaseerd is op de Leegstandwet. De woonruimte staat dan op de nominatie voor sloop, renovatie of verkoop. 
+					De huurovereenkomst die je afsluit bij tijdelijk verhuur volgens de Leegstandwet duurt minimaal 6 maanden. Daarna kan het contract opgezegd worden. Huurders hebben een opzegtermijn van een maand. Gapph hanteert een opzegtermijn van drie maanden. 
+					</p>
+					<p>We bieden ook ruimtes aan die niet gebaseerd zijn op de Leegstandwet maar toch tijdelijk worden verhuurd. Je weet van te voren wel altijd tot wanneer het contract duurt, maar dat kan variëren van duur. Je leest in de woningadvertentie altijd hoe lang de huur duurt.</p>
+				</div>
+			
+			</div>	
+			<div class="md:pl-4 w-fulll lg:w-1/2">
+
+				<div class="px-6 iv-prose">
+					<h3>Sociale huurwoningen</h3>
+					<p>Veel van de aangeboden woonruimtes vallen onder de noemer 'sociale huurwoningen'. We beheren deze beheert namens wooncorporaties. Voor deze sociale woningen geldt over het algemeen een inkomensgrens en soms worden kandidaten <a href="https://www.gapph.nl/faq/passend" title="Wat is passend toewijzen">passend toegewezen</a>. Op deze manier blijven de goedkopere sociale huurwoningen geschikt voor woningzoekenden met lagere inkomens.</p>
+					<h3>Antikraak woonruimtes</h3>
+					<p>De best betaalbare woonruimtes zijn over het algemeen de antikraakwoonruimtes. Al vanaf € 90,- per maand kun je in een antikraakruimte wonen. In de meeste verzamelpanden, zoals schoolgebouwen en verzorgingstehuizen bieden wij antikraakkamers aan. Je bent dan samen met één of meerdere medebewoners woonachtig op hetzelfde adres. Uiteraard heb je wel je eigen kamer. De kamers kunnen klein zijn of zo groot zijn als een gymzaal of klaslokaal. De opzegtermijn voor antikraakkamers en antikraakwoningen is een maand.</p>
+				</div>
+
+			</div>
+		</div>
+
+
+  </div><!-- Einde container -->
+</div><!-- Einde witte kader -->
+
+<script>
+
+const input = document.getElementById('azoeken');
+
+// Debounce function
+function debounce(func, wait) {
+  let timeout;
+  return function executedFunction(...args) {
+    const later = () => {
+      clearTimeout(timeout);
+      func.apply(this, args);
+    };
+    clearTimeout(timeout);
+    timeout = setTimeout(later, wait);
+  };
+}
+
+// Event listener with debounce
+input.addEventListener('input', debounce(function() {
+  const inputValue = this.value;
+  
+  if (inputValue.length >= 3) {
+    $('#aclear').css('display', 'block');
+  } else {
+    $('#aclear').css('display', 'none');
+  }
+}, 100)); // Adjust the delay as needed
+
+function openModal() {
+    setTimeout( function() {$('.frontpop').modal(); },2000);
+}
+
+$(document).ready(function() {
+
+	$(document).on('click', '#loadmore', function(){  
+		var lastid = $(this).data('id'); 
+		var categories = $(this).data('cat');
+		$('#loadmore').html('Loading...');
+		$.ajax({  
+				url:"https://www.gapph.nl/woonruimte/load",
+				method:"POST",  
+				data:{
+					lastid:lastid,
+				},  
+				dataType:"text",  
+				success:function(data)  
+				{  
+					if(data != '')
+					{  
+							$('#remove').remove();  
+							$('#loadtable').append(data);
+					}  
+				}  
+		});  
+	});
+
+	if ($('#azoeken').val().trim() !== '') {
+		$('#aclear').css('display', 'block');
+	}
+	
+	$('#aclear').click(function() {
+		$('#azoeken').val('');
+		window.location = "https://www.gapph.nl/woonruimte/zoeken?region_search=";
+	});
+
+	$('#toggleB').click(function() {
+		if ($(this).is(':checked')) {
+			$('.dot').css('background-color', '#ce0058');
+			setTimeout('filter();', 200);
+		} else {
+			$('.dot').css('background-color', 'white');
+				setTimeout('filter();', 200);
+		}
+	});
+
+}); 
+
+</script>
+
+<footer>
+<div class="relative mt-10">
+<div class="bg-smaragd-licht">
+	<div class="container px-2 py-2 mx-auto text-sm text-white">
+		<a href="https://www.gapph.nl/">Home</a> <span class="divider">/</span> <a href="https://www.gapph.nl/kandidaten">Kandidaten</a> <span class="divider">/</span> Aanbod	</div>
+</div>
+
+<div class="text-sm bg-grijs bsf-outer bs-font">
+	 <div class="flex flex-wrap py-20 mx-auto iv-container md:flex-row bsf-inner">
+
+		  <div class="w-full px-2 py-4 md:w-7/12 bsf-col-one">
+
+				<div class="grid grid-cols-2 bsf-grid">
+
+					 <div class="bsf-text bs-font">
+						<span class="text-lg font-bold ">Ik zoek:</span><br>
+						  <a href="https://www.gapph.nl/woonruimte/antikraak" title="Het aanbod van antikraak woonruimtes">Antikraak woonruimte</a><br>
+						  <a href="https://www.gapph.nl/woonruimte/tijdelijk-huren" title="Het aanbod van tijdelijke huurwoningen">Tijdelijke huurwoning</a><br>
+						  <a href="https://www.gapph.nl/werkruimte/" title="Het aanbod van tijdelijke werkruimte">Werkruimte</a><br>
+						  <a href="https://www.gapph.nl/werken-bij-gapph" title="Op zoek naar een leuke functie? Check ze hier">Vacatures</a><br><br>
+
+						  <span class="text-lg font-bold ">Service en support</span><br>
+						  <a href="https://www.gapph.nl/contact" title="Voor al je vragen gebruik je dit contact formulier.">Contactformulier</a><br>
+						  <a href="https://www.gapph.nl/vestigingen" title="Hier vind je alle vestigingen en adresgegevens van Gapph.">Vestigingen</a><br>
+						  <a href="https://www.gapph.nl/feedback-delen" title="Loopt er iets niet helemaal zoals verwacht? Jouw feedback is belangrijk.">Feedback delen</a><br>
+						  <a href="https://www.gapph.nl/contact" title="(Bijna) al je vragen worden hier beantwoord.">Veelgestelde vragen</a><br>
+						  <a href="https://www.gapph.nl/instructies" title="We leggen je graag uit hoe Mijn Gapph werkt.">Zo werkt Mijn Gapph</a>
+					 </div>
+
+
+					 <div class="bsf-text bs-font">
+						<span class="text-lg font-bold">Gapph diensten</span><br>
+						<a href="https://www.gapph.nl/onze-diensten" title="Een greep uit de diensten en services die wij verlenen">Vastgoedbeheer</a><br>
+						<a href="https://www.gapph.nl/nieuws" title="Het laatste nieuws over de woningmarkt en Gapph">Nieuws</a><br>
+						<a href="https://www.gapph.nl/gapph-together" title="Het laatste nieuws over de woningmarkt en Gapph">Gapph Together</a><br>
+						<a href="https://www.gapph.nl/gapph-modular" title="Het laatste nieuws over de woningmarkt en Gapph">Gapph Modular</a><br><br>
+
+						<span class="text-lg font-bold">Antikraak en tijdelijke huur in o.a.</span><br>
+						<div class="overflow-x-hidden overflow-y-scroll h-36 bsf-antikraak">
+							<a href="https://www.gapph.nl/antikraak/alkmaar" title="antikraak en tijdelijke verhuur woningen in Alkmaar">Alkmaar</a>,
+							<a href="https://www.gapph.nl/antikraak/almelo" title="antikraak en tijdelijke verhuur woningen in Almelo">Almelo</a>,
+							<a href="https://www.gapph.nl/antikraak/almere" title="antikraak en tijdelijke verhuur woningen in Almere">Almere</a>,
+							<a href="https://www.gapph.nl/antikraak/alphen-aan-den-rijn" title="antikraak en tijdelijke verhuur woningen in Alphen aan den Rijn"><nobr>Alphen aan den Rijn</nobr></a>,
+							<a href="https://www.gapph.nl/antikraak/altena" title="antikraak en tijdelijke verhuur woningen in Altena">Altena</a>,
+							<a href="https://www.gapph.nl/antikraak/amersfoort" title="antikraak en tijdelijke verhuur woningen in Amersfoort">Amersfoort</a>,
+							<a href="https://www.gapph.nl/antikraak/amstelveen" title="antikraak en tijdelijke verhuur woningen in Amstelveen">Amstelveen</a>,
+							<a href="https://www.gapph.nl/antikraak/amsterdam" title="antikraak en tijdelijke verhuur woningen in Amsterdam">Amsterdam</a>,
+							<a href="https://www.gapph.nl/antikraak/arnhem" title="antikraak en tijdelijke verhuur woningen in Arnhem">Arnhem</a>,
+							<a href="https://www.gapph.nl/antikraak/assen" title="antikraak en tijdelijke verhuur woningen in Assen">Assen</a>,
+							<a href="https://www.gapph.nl/antikraak/barendrecht" title="antikraak en tijdelijke verhuur woningen in Barendrecht">Barendrecht</a>,
+							<a href="https://www.gapph.nl/antikraak/beverwijk" title="antikraak en tijdelijke verhuur woningen in Beverwijk">Beverwijk</a>,
+							<a href="https://www.gapph.nl/antikraak/breda" title="antikraak en tijdelijke verhuur woningen in Breda">Breda</a>,
+							<a href="https://www.gapph.nl/antikraak/den-bosch" title="antikraak en tijdelijke verhuur woningen in Den Bosch"><nobr>Den Bosch</nobr></a>,
+							<a href="https://www.gapph.nl/antikraak/den-haag" title="antikraak en tijdelijke verhuur woningen in Den Haag"><nobr>Den Haag</nobr></a>,
+							<a href="https://www.gapph.nl/antikraak/deventer" title="antikraak en tijdelijke verhuur woningen in Deventer">Deventer</a>,
+							<a href="https://www.gapph.nl/antikraak/dijk-en-waard" title="antikraak en tijdelijke verhuur woningen in Dijk en Waard"><nobr>Dijk en Waard</nobr></a>,
+							<a href="https://www.gapph.nl/antikraak/doetinchem" title="antikraak en tijdelijke verhuur woningen in Doetinchem">Doetinchem</a>,
+							<a href="https://www.gapph.nl/antikraak/ede" title="antikraak en tijdelijke verhuur woningen in Ede">Ede</a>,
+							<a href="https://www.gapph.nl/antikraak/eindhoven" title="antikraak en tijdelijke verhuur woningen in Eindhoven">Eindhoven</a>,
+							<a href="https://www.gapph.nl/antikraak/emmen" title="antikraak en tijdelijke verhuur woningen in Emmen">Emmen</a>,
+							<a href="https://www.gapph.nl/antikraak/enschede" title="antikraak en tijdelijke verhuur woningen in Enschede">Enschede</a>,
+							<a href="https://www.gapph.nl/antikraak/gooise-meren" title="antikraak en tijdelijke verhuur woningen in Gooise Meren"><nobr>Gooise Meren</nobr></a>,
+							<a href="https://www.gapph.nl/antikraak/gouda" title="antikraak en tijdelijke verhuur woningen in Gouda">Gouda</a>,
+							<a href="https://www.gapph.nl/antikraak/groningen" title="antikraak en tijdelijke verhuur woningen in Groningen">Groningen</a>,
+							<a href="https://www.gapph.nl/antikraak/haarlem" title="antikraak en tijdelijke verhuur woningen in Haarlem">Haarlem</a>,
+							<a href="https://www.gapph.nl/antikraak/haarlem" title="antikraak en tijdelijke verhuur woningen in Haarlem">Haarlem</a>,
+							<a href="https://www.gapph.nl/antikraak/haarlemmermeer" title="antikraak en tijdelijke verhuur woningen in Haarlemmermeer">Haarlemmermeer</a>,
+							<a href="https://www.gapph.nl/antikraak/heerhugowaard" title="antikraak en tijdelijke verhuur woningen in Heerhugowaard">Heerhugowaard</a>,
+							<a href="https://www.gapph.nl/antikraak/heerlen" title="antikraak en tijdelijke verhuur woningen in Heerlen">Heerlen</a>,
+							<a href="https://www.gapph.nl/antikraak/heerlen " title="antikraak en tijdelijke verhuur woningen in Heerlen ">Heerlen </a>,
+							<a href="https://www.gapph.nl/antikraak/hengelo" title="antikraak en tijdelijke verhuur woningen in Hengelo">Hengelo</a>,
+							<a href="https://www.gapph.nl/antikraak/hilversum" title="antikraak en tijdelijke verhuur woningen in Hilversum">Hilversum</a>,
+							<a href="https://www.gapph.nl/antikraak/hoeksche-waard" title="antikraak en tijdelijke verhuur woningen in Hoeksche Waard"><nobr>Hoeksche Waard</nobr></a>,
+							<a href="https://www.gapph.nl/antikraak/hoogeveen" title="antikraak en tijdelijke verhuur woningen in Hoogeveen">Hoogeveen</a>,
+							<a href="https://www.gapph.nl/antikraak/hoorn" title="antikraak en tijdelijke verhuur woningen in Hoorn">Hoorn</a>,
+							<a href="https://www.gapph.nl/antikraak/leeuwarden" title="antikraak en tijdelijke verhuur woningen in Leeuwarden">Leeuwarden</a>,
+							<a href="https://www.gapph.nl/antikraak/leiden" title="antikraak en tijdelijke verhuur woningen in Leiden">Leiden</a>,
+							<a href="https://www.gapph.nl/antikraak/maastricht" title="antikraak en tijdelijke verhuur woningen in Maastricht">Maastricht</a>,
+							<a href="https://www.gapph.nl/antikraak/middelburg" title="antikraak en tijdelijke verhuur woningen in Middelburg">Middelburg</a>,
+							<a href="https://www.gapph.nl/antikraak/nijmegen" title="antikraak en tijdelijke verhuur woningen in Nijmegen">Nijmegen</a>,
+							<a href="https://www.gapph.nl/antikraak/nissewaard" title="antikraak en tijdelijke verhuur woningen in Nissewaard">Nissewaard</a>,
+							<a href="https://www.gapph.nl/antikraak/oss" title="antikraak en tijdelijke verhuur woningen in Oss">Oss</a>,
+							<a href="https://www.gapph.nl/antikraak/purmerend" title="antikraak en tijdelijke verhuur woningen in Purmerend">Purmerend</a>,
+							<a href="https://www.gapph.nl/antikraak/roermond" title="antikraak en tijdelijke verhuur woningen in Roermond">Roermond</a>,
+							<a href="https://www.gapph.nl/antikraak/roosendaal" title="antikraak en tijdelijke verhuur woningen in Roosendaal">Roosendaal</a>,
+							<a href="https://www.gapph.nl/antikraak/rotterdam" title="antikraak en tijdelijke verhuur woningen in Rotterdam">Rotterdam</a>,
+							<a href="https://www.gapph.nl/antikraak/schagen" title="antikraak en tijdelijke verhuur woningen in Schagen">Schagen</a>,
+							<a href="https://www.gapph.nl/antikraak/schiedam" title="antikraak en tijdelijke verhuur woningen in Schiedam">Schiedam</a>,
+							<a href="https://www.gapph.nl/antikraak/sittard-geleen" title="antikraak en tijdelijke verhuur woningen in Sittard-Geleen"><nobr>Sittard-Geleen</nobr></a>,
+							<a href="https://www.gapph.nl/antikraak/soest" title="antikraak en tijdelijke verhuur woningen in Soest">Soest</a>,
+							<a href="https://www.gapph.nl/antikraak/sudwest-fryslan" title="antikraak en tijdelijke verhuur woningen in Sudwest-Fryslan"><nobr>Sudwest-Fryslan</nobr></a>,
+							<a href="https://www.gapph.nl/antikraak/terneuzen" title="antikraak en tijdelijke verhuur woningen in Terneuzen">Terneuzen</a>,
+							<a href="https://www.gapph.nl/antikraak/tilburg" title="antikraak en tijdelijke verhuur woningen in Tilburg">Tilburg</a>,
+							<a href="https://www.gapph.nl/antikraak/utrecht" title="antikraak en tijdelijke verhuur woningen in Utrecht">Utrecht</a>,
+							<a href="https://www.gapph.nl/antikraak/veenendaal" title="antikraak en tijdelijke verhuur woningen in Veenendaal">Veenendaal</a>,
+							<a href="https://www.gapph.nl/antikraak/venlo" title="antikraak en tijdelijke verhuur woningen in Venlo">Venlo</a>,
+							<a href="https://www.gapph.nl/antikraak/vlaardingen" title="antikraak en tijdelijke verhuur woningen in Vlaardingen">Vlaardingen</a>,
+							<a href="https://www.gapph.nl/antikraak/waalwijk" title="antikraak en tijdelijke verhuur woningen in Waalwijk">Waalwijk</a>,
+							<a href="https://www.gapph.nl/antikraak/westland" title="antikraak en tijdelijke verhuur woningen in Westland">Westland</a>,
+							<a href="https://www.gapph.nl/antikraak/zeist" title="antikraak en tijdelijke verhuur woningen in Zeist">Zeist</a>,
+							<a href="https://www.gapph.nl/antikraak/zwolle" title="antikraak en tijdelijke verhuur woningen in Zwolle">Zwolle</a>
+
+						</div>
+
+
+					 </div>
+				</div>
+
+		  </div>
+		  <div class="w-full px-2 lg:p-4 md:w-5/12 bsf-col-two">
+
+
+				<div class="bsf-about-block">
+					 <span class="text-lg font-bold">Wat wij doen</span><br>
+					 <div class="h-full overflow-x-hidden bsf-about bs-font">
+
+						  <p class="mb-4">Gapph vastgoedbeheer is jouw dienstverlener voor antikraak wonen, tijdelijk beheer van leegstaand vastgoed en tijdelijke verhuur. Gapph levert maatwerk en innovatieve oplossingen bij herbestemming, herontwikkeling en herstructurering in Nederland. Het vastgoed beheer is bij Gapph in vertrouwde handen. Vele organisaties gingen je al voor. Gapph is in staat om leegstand een tijdelijke, nieuwe invulling te geven om zo waardevermindering en een verminderde kans op verhuur of verkoop tegen te gaan.</p>
+
+						  <p class="mb-4">Woningzoekenden kunnen bij Gapph op zoek gaan naar antikraakwoonruimtes, maar ook het <a class="text-blue-900" href="tijdelijke-woonruimte">tijdelijk huren van een woning</a> behoort tot de mogelijkheden. Gapph heeft een breed aanbod van kamers en woningen.</p>
+
+						  <p class="mb-4">Startende ondernemers en andere organisaties kunnen bij Gapph terecht voor tijdelijke en zeer betaalbare huisvesting van <a style="color:#000;text-decoration:none" href="https://www.gapph.nl/werkruimte/" title="Overzicht van tijdelijke werkruimtes bij Gapph">werkruimte</a>. Tijdelijke werkruimte biedt ondernemers de mogelijkheid om goedkope bedrijfsruimte te huren op soms unieke locaties.</p>
+
+
+					 </div>
+				</div>
+				
+		  </div>
+
+	 </div> <!-- rechter colomn -->
+
+</div> <!-- container close -->
+</div> <!-- footerblock end --><div class="pb-5 bg-black bsf-outer">
+	<div class="container mx-auto text-xs text-white bso-inner">
+
+		<div class="flex flex-row items-center px-2 pt-10 lg:mt-0 bso-flex">
+
+			<div class="hidden w-2/12 md:inline-flex bso-km">
+				<img loading="lazy" class="hidden-xs" style="width:11rem" src="https://www.gapph.nl/ci/images/logos/gapph-vastgoedbeheer.svg" alt="Gapph Vastgoedbeheer">
+			</div>
+			
+			<div class="flex justify-center w-full md:w-8/12 bso-cr">
+				<div class="max-w-2xl">
+					<div class="flex flex-wrap justify-center mx-4 mb-3 text-center bso-cra bs-font"> 
+
+
+							<div class="flex flex-row justify-center w-full bsf-social">
+  <div class="m-1 bsf-social-m">
+    <a href="https://www.facebook.com/gapphaanbod/" target="_blank" title="Facebook">
+      <svg class="w-8 h-8 lg:w-10 lg:h-10 bsf-social-icon" viewBox="-33 -33 1664 1664"><g fill="none" fill-rule="evenodd"><path d="M1600 800a800 800 0 1 0-925 790v-559H472V800h203V624c0-201 119-311 302-311 88 0 179 15 179 15v197h-101c-99 0-130 62-130 125v150h222l-36 231H925v559a800 800 0 0 0 675-790" style="fill:#008bd2"/><path fill="#fff" d="M1147 800H925V650c0-63 31-125 130-125h101V328s-91-15-179-15c-183 0-302 110-302 311v176H472v231h203v559a806 806 0 0 0 250 0v-559h186z"/></g></svg>
+    </a>
+  </div>
+  <div class="m-1 bsf-social-m">
+    <a href="https://www.tiktok.com/@gapphaanbod" target="_blank" title="TikTok">
+      <svg class="w-8 h-8 lg:w-10 lg:h-10 bsf-social-icon" viewBox="0 0 64 64"><circle cx="31.7" cy="32.4" r="28.5" style="fill:#fff"/><path d="M32 0A31.9 31.9 0 0 0 0 31.9 31.9 31.9 0 0 0 31.9 64h.1a31.9 31.9 0 0 0 32-31.9A31.9 31.9 0 0 0 32.1 0Zm17.5 27.1-1.2-.2a22.5 22.5 0 0 1-4.2-1.3 14.6 14.6 0 0 1-4.1-2.9v16.1a13.4 13.4 0 1 1-13.4-13.4h2.5v7.1h-2.5a6.4 6.4 0 1 0 6.4 6.4V11.8h7l.4.7a17.7 17.7 0 0 0 4.4 5.4 10.6 10.6 0 0 0 4.8 2.2l1.3.2Z" style="fill:#008bd2"/></svg>
+    </a>
+  </div>
+  <div class="m-1 bsf-social-m">
+    <a href="https://www.linkedin.com/company/gapph/" target="_blank" title="Linkedin">
+      <svg class="w-8 h-8 lg:w-10 lg:h-10 bsf-social-icon" viewBox="1.44 1.44 29.05 29.05"><rect width="28" height="28" x="2" y="2" rx="14" style="fill:#008bd2"/><path fill="#fff" d="M12.619 9.692c0 .935-.81 1.692-1.81 1.692C9.81 11.384 9 10.627 9 9.692S9.81 8 10.81 8c.998 0 1.809.758 1.809 1.692zm-3.372 2.936h3.093V22H9.247v-9.372zm8.073 0h-3.093V22h3.093v-4.795c0-1.107.378-2.22 1.886-2.22 1.705 0 1.695 1.45 1.687 2.572-.01 1.467.014 2.965.014 4.443H24v-4.946c-.026-3.159-.85-4.614-3.557-4.614-1.608 0-2.604.73-3.123 1.39v-1.202z"/></svg>
+    </a>
+  </div>
+  <div class="m-1 bsf-social-m">
+    <a href="https://www.instagram.com/gapphaanbod/" target="_blank" title="Instagram">
+      <svg class="w-8 h-8 lg:w-10 lg:h-10 bsf-social-icon" viewBox="-5.83 -5.83 302.9 302.9">
+      <path d="M145.659 0c80.44 0 145.66 65.219 145.66 145.66S226.1 291.319 145.66 291.319 0 226.1 0 145.66 65.21 0 145.659 0z" style="fill: rgb(0, 139, 210);"/>
+      <path fill="#fff" d="M195.93 63.708H95.38c-17.47 0-31.672 14.211-31.672 31.672v100.56c0 17.47 14.211 31.672 31.672 31.672h100.56c17.47 0 31.672-14.211 31.672-31.672V95.38c-.001-17.461-14.212-31.672-31.682-31.672zm9.978 18.326 3.587-.009v27.202l-27.402.091-.091-27.202 23.906-.082zm-60.248 36.205c22.732 0 27.42 21.339 27.42 27.429 0 15.103-12.308 27.411-27.42 27.411-15.121 0-27.42-12.308-27.42-27.411-.01-6.09 4.688-27.429 27.42-27.429zm63.99 75.716c0 8.658-7.037 15.704-15.713 15.704H97.073c-8.667 0-15.713-7.037-15.713-15.704v-66.539h22.759c-2.112 5.198-3.305 12.299-3.305 18.253 0 24.708 20.101 44.818 44.818 44.818s44.808-20.11 44.808-44.818c0-5.954-1.193-13.055-3.296-18.253h22.486v66.539h.02z"/>
+    </svg>
+    </a>
+  </div>
+</div>
+				
+
+							<a class="mx-1" href="https://www.gapph.nl/">&copy; 2026 Gapph Vastgoedbeheer</a>|
+							<a class="mx-1" href="https://www.gapph.nl/disclaimer">Disclaimer</a>|
+							<a class="mx-1" href="https://www.gapph.nl/privacyregeling">Privacyregeling</a>
+				
+					
+					</div>
+				</div>
+			</div>
+			<div class="hidden w-2/12 bso-km md:inline-flex"></div>
+		</div> 
+	</div> </div>
+
+<link rel="stylesheet" href="https://www.gapph.nl/ci/fancybox/jquery.fancybox.min.css">
+<script src="https://www.gapph.nl/ci/fancybox/jquery.fancybox.min.js"></script></div>
+</footer>
+
+
+<script src="ci/javascripts/animations/aos.js"></script>
+<script>
+
+function gotoid(nameID,afstand=0,snelheid=1000) { 
+	
+	$("html, body").animate({scrollTop: $('#' + nameID).offset().top-afstand}, snelheid);
+}
+
+AOS.init( {
+	duration: 1000
+});
+
+// $('.bigtext').bigtext({
+//     maxfontsize: 100, // default is 528 (in px)
+// 	 minfontseze: 16 // default is null
+// }); 
+
+/** make alpine W3C complient start */
+const startingWith = (subject, replacement) => ({ name, value }) => {
+	if (name.startsWith(subject)) {
+		name = name.replace(subject, replacement);
+	}
+	return { name, value };
+};
+/** make alpine W3C complient end */
+
+document.addEventListener('alpine:init', () => {
+	Alpine.data('menu', () => ({
+			menu: false,
+			menu_toggle() {
+				this.menu = ! this.menu;
+				if(this.menu)
+				{
+					document.body.classList.add("noScroll");
+				} else {
+					document.body.classList.remove("noScroll");
+				}
+			},
+			menu_away() {
+				this.menu = false;
+				document.body.classList.remove("noScroll");
+			}
+	}));
+	/** make alpine W3C complient start */
+	Alpine.prefix("data-x");
+	Alpine.mapAttributes(startingWith("data-xon.", Alpine.prefixed("on:")));
+	Alpine.mapAttributes(startingWith("data-xclick", Alpine.prefixed("on:click")));
+	/* Alpine.mapAttributes(startingWith("data-xbind.", Alpine.prefixed("bind:"))); */
+	Alpine.mapAttributes(startingWith("data-xclass", Alpine.prefixed("bind:class")));
+	Alpine.mapAttributes(startingWith("data-xtype", Alpine.prefixed("bind:type")));
+	Alpine.mapAttributes(startingWith("data-xkeydown", Alpine.prefixed("on:keydown")));
+	/** make alpine W3C complient end */
+})
+
+$(document).ready(function() {
+
+
+	$.getJSON('https://www.gapph.nl/user_status', function(data) {
+		if (data.loggedin || data.loggedin_bhr) {
+			$('.login_item').css('display', 'none');
+			$('.logout_item').css('display', 'inline');
+			$('#myicon').addClass('bg-active');
+		} else {
+			$('.login_item').css('display', 'inline');
+			$('.logout_item').css('display', 'none');
+			$('#myicon').removeClass('bg-active');
+		};
+		if (data.loggedin_bhr) {
+			$('.beheer_item').css('display', 'inline');
+		} else {
+			$('.beheer_item').css('display', 'none');
+		};
+		if (data.show_inschrijven_woonruimte) {
+			$('.show_inschrijven_woonruimte').css('display', 'inline');
+		} else {
+			$('.show_inschrijven_woonruimte').css('display', 'none');
+		};
+		if (data.show_instellingen_werkruimte) {
+			$('.show_instellingen_werkruimte').css('display', 'inline');
+		} else {
+			$('.show_instellingen_werkruimte').css('display', 'none');
+		};
+	});
+
+	// $(".360").fancybox({
+	//   iframe : {
+	// 	css : {
+	// 		width : '620px',
+	// 		height: '415px'
+	// 	}
+	//  }
+	// });
+	
+	var videos = $(".embed-responsive").map(function(){return $(this).attr("video_id");}).get();
+	if(videos.length){
+
+		const cookiebarValue = document.cookie.match(/(;)?cookiebar=([^;]*);?/)?.[2];
+
+		videos.forEach(function (video, index) {
+
+			if (cookiebarValue == 'CookieDisallowed') {
+				// $('.youtube-video-place-'+video).hide();
+				// $('.youtube-video-place-'+video).removeAttr('style');
+				// $('.youtube-video-place-'+video).height(100);
+				$('.youtube-video-place-'+video).css('background','#e3e4e4');
+				$('.youtube-video-place-'+video).html('<div class="flex p-10"><a class="mx-auto text-sm" href="#" onclick="document.cookie=\'cookiebar=;expires=Thu, 01 Jan 1970 00:00:01 GMT;path=/\'; setupCookieBar(); return false;">Accepteer cookies om de video te bekijken</a></div>');
+			}
+		
+			var video_wrapper = $('.youtube-video-place-'+video);
+			if(video_wrapper.length){
+				// If user clicks on the video wrapper load the video.
+				var video_url = '<iframe name="youtube" allowfullscreen frameborder="0" class="embed-responsive-item" src="' + video_wrapper.data('yt-url') + '"></iframe>';
+				$('.play-youtube-video-'+video).on('click', function(){ video_wrapper.html(video_url);});
+				$('.play-button-'+video).on('click', function(){video_wrapper.html(video_url);});
+				/* $('.play-youtube-video').hover(function(){ $('.play-button').css('background', 'red'); }); */
+				$('.play-youtube-video-'+video).hover(function(){  
+		        	$('.play-button-'+video).css('background', 'red');
+		        	$('.play-button-'+video).css('transition', 'background-color 0.3s ease');
+			    },     
+			    function(){    
+			        $('.play-button-'+video).css('background', '');
+			    });
+			}
+		});
+	} 
+
+	$("[data-fancybox]").fancybox({
+		mobile: {
+         clickSlide : "close"
+      },
+		fullscreen : {
+			autoStart : true
+		}
+			});
+	
+}); 
+
+
+/*
+var survey = $.cookie('survey-visited');
+if (survey == 'yes') {
+	
+} else {
+	openSurveyModal();
+}
+$.cookie('survey-visited', 'yes', {
+	expires: 1
+}); // 1 day
+
+function openSurveyModal() {
+	setTimeout(function() {
+	
+				$.fancybox.open({
+					src  : 'https://www.gapph.nl/nieuws/eforms/social-media-survey/23/',
+					type : 'iframe'
+				});
+	
+	}, 1);
+}
+*/
+
+</script>
+</body>
+</html>
