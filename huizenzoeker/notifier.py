@@ -19,12 +19,22 @@ _env = Environment(
 )
 
 
+def _wording(house: House) -> dict:
+    """Rent vs buy phrasing for subject/body."""
+    if house.listing_type == "buy":
+        return {"noun": "koopwoning", "price_suffix": "koopprijs"}
+    return {"noun": "huurwoning", "price_suffix": "per maand"}
+
+
 def _render_email(house: House) -> str:
     tpl = _env.get_template("email_notification.html")
+    w = _wording(house)
     return tpl.render(
         house=house,
         price_str=cents_to_eur_str(house.price_cents),
         city=house.city or "",
+        noun=w["noun"],
+        price_suffix=w["price_suffix"],
     )
 
 
@@ -32,14 +42,15 @@ def _build_message(house: House, recipients: list[str]) -> EmailMessage:
     msg = EmailMessage()
     price_str = cents_to_eur_str(house.price_cents)
     city = house.city or "?"
-    msg["Subject"] = f"Nieuwe huurwoning {city} ({price_str}) gevonden"
+    w = _wording(house)
+    msg["Subject"] = f"Nieuwe {w['noun']} {city} ({price_str}) gevonden"
     msg["From"] = settings.smtp_from
     msg["To"] = ", ".join(recipients)
 
     text_body = (
-        f"Nieuwe huurwoning gevonden in {city}.\n\n"
+        f"Nieuwe {w['noun']} gevonden in {city}.\n\n"
         f"Adres: {house.address_raw}\n"
-        f"Prijs: {price_str}\n"
+        f"Prijs: {price_str} ({w['price_suffix']})\n"
         f"Bron: {house.source}\n"
         f"Link: {house.source_url}\n"
     )

@@ -152,7 +152,11 @@ def trigger_refresh_funda_cookies() -> None:
 
 
 def trigger_source(source_name: str) -> None:
-    """Fire a scrape for a single source (retry button on the Runs page)."""
+    """Fire a scrape for a single scraper_key (retry button on the Runs page).
+
+    run_source re-snapshots and expands the scraper_key into all its enabled
+    (city, listing_type) jobs at execution time.
+    """
     if _scheduler is None:
         raise RuntimeError("Scheduler not initialized")
 

@@ -24,6 +24,8 @@
       <thead>
         <tr>
           <th>Bron</th>
+          <th>Stad</th>
+          <th>Type</th>
           <th>Gestart</th>
           <th>Klaar</th>
           <th>Status</th>
@@ -37,6 +39,8 @@
         {% for r in runs %}
           <tr>
             <td>{{ r.source }}</td>
+            <td>{{ r.city or '-' }}</td>
+            <td>{{ (r.listing_type | ltype) if r.listing_type else '-' }}</td>
             <td class="muted">{{ r.started_at | dt }}</td>
             <td class="muted">{{ r.finished_at | dt }}</td>
             <td><span class="pill {{ r.status }}">{{ r.status }}</span></td>

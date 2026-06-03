@@ -27,8 +27,14 @@ _HOUSE_NUMBER_FROM_SLUG_RE = re.compile(r"-(\d+[a-z]?)-[a-z]+/?$", re.IGNORECASE
 
 
 class RncWonen(BaseScraper):
-    SOURCE_NAME = "rncwonen"
-    START_URL = (
+    SCRAPER_KEY = "rncwonen"
+    DISPLAY_NAME = "RNC Wonen"
+    SUPPORTED_TYPES = {"rent"}
+    # Drupal taxonomy-ID URL can't be templated by city name → custom-URL only.
+    # Admin must supply a custom_url per city (the escape hatch). The legacy
+    # combined-area URL below is what the 0003 migration seeds for Oss/Berghem.
+    URL_TEMPLATES = {}
+    LEGACY_START_URL = (
         "https://www.rncwonen.nl/aanbod"
         "?field_location_taxonomy_target_id%5B%5D=718"
         "&field_location_taxonomy_target_id%5B%5D=712"
@@ -36,7 +42,6 @@ class RncWonen(BaseScraper):
         "&field_house_type_target_id=All"
         "&field_price_deci_value=5"
     )
-    CITY_HINT = None
     USE_PLAYWRIGHT = True
     WAIT_FOR_SELECTOR = "div.house"
 

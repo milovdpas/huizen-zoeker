@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block title %}Scrapers — Huizen Zoeker{% endblock %}
+{% block content %}
+<div class="card">
+  <h2>Scraper-instellingen</h2>
+  <p class="muted">
+    Bepaal per scraper of hij huur en/of koop ondersteunt. Dit stuurt welke types
+    in de stedenmatrix verschijnen en welke jobs de runner draait. Heeft een type
+    geen ingebouwde URL-template (geen vinkje hieronder), dan moet je per stad een
+    eigen URL invullen bij <a href="{{ url_for('web.cities_page') }}">Steden</a>.
+  </p>
+
+  <form method="post">
+    <table>
+      <thead>
+        <tr>
+          <th>Scraper</th>
+          <th>Huur</th>
+          <th>Koop</th>
+          <th>Ingebouwde template</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for sc in scrapers %}
+          <tr>
+            <td><strong>{{ sc.display_name }}</strong><br><span class="muted">{{ sc.key }}</span></td>
+            <td><label><input type="checkbox" name="rent_{{ sc.key }}" {{ 'checked' if sc.supports_rent else '' }}> Huur</label></td>
+            <td><label><input type="checkbox" name="buy_{{ sc.key }}" {{ 'checked' if sc.supports_buy else '' }}> Koop</label></td>
+            <td class="muted">
+              Huur: {{ '✓' if sc.has_rent_template else '— eigen URL nodig' }}<br>
+              Koop: {{ '✓' if sc.has_buy_template else '— eigen URL nodig' }}
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <div style="margin-top:14px"><button type="submit">Opslaan</button></div>
+  </form>
+</div>
+{% endblock %}

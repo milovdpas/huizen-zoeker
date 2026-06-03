@@ -11,23 +11,17 @@ Addresses are anonymized to street level, so dedup by URL — not address.
 from .base import BaseScraper
 
 
-class _DirectwonenBase(BaseScraper):
-    SOURCE_NAME = "directwonen"
+class Directwonen(BaseScraper):
+    SCRAPER_KEY = "directwonen"
+    DISPLAY_NAME = "DirectWonen"
+    SUPPORTED_TYPES = {"rent", "buy"}
+    URL_TEMPLATES = {
+        "rent": "https://directwonen.nl/huurwoningen-huren/{slug}",
+        "buy": "https://directwonen.nl/koopwoningen-kopen/{slug}",
+    }
     USE_PLAYWRIGHT = True
     WAIT_FOR_SELECTOR = "div.tile"
     LISTING_CONTAINER_SELECTOR = "div.tile"
     ADDRESS_SELECTOR = "h3.location-text"
     PRICE_SELECTOR = "div.advert-location-price"
     TITLE_SELECTOR = "span.advert-location-header"
-
-
-class DirectwonenOss(_DirectwonenBase):
-    SOURCE_NAME = "directwonen-oss"
-    START_URL = "https://directwonen.nl/huurwoningen-huren/oss"
-    CITY_HINT = "Oss"
-
-
-class DirectwonenBerghem(_DirectwonenBase):
-    SOURCE_NAME = "directwonen-berghem"
-    START_URL = "https://directwonen.nl/huurwoningen-huren/berghem"
-    CITY_HINT = "Berghem"

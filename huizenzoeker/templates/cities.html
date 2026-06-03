@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{% block title %}Steden — Huizen Zoeker{% endblock %}
+{% block content %}
+
+<div class="card">
+  <h2>Stad toevoegen</h2>
+  <p class="muted">Slug is de canonieke kleine-letter vorm die in URL's wordt gebruikt (laat leeg om automatisch af te leiden van de naam).</p>
+  <form method="post" class="row">
+    <input type="hidden" name="action" value="add_city">
+    <label>Naam <input type="text" name="name" placeholder="Nijmegen" required></label>
+    <label>Slug <input type="text" name="slug" placeholder="nijmegen"></label>
+    <button type="submit">Toevoegen</button>
+  </form>
+</div>
+
+{% for city in cities %}
+  {% set ns = namespace(on=0, total=0) %}
+  {% for sc in city.scrapers %}{% for t in sc.types %}{% set ns.total = ns.total + 1 %}{% if t.enabled %}{% set ns.on = ns.on + 1 %}{% endif %}{% endfor %}{% endfor %}
+  <details class="card" open>
+    <summary style="cursor:pointer;list-style-position:outside">
+      <span style="font-size:16px;font-weight:600">{{ city.name }}</span>
+      {% if city.enabled %}<span class="pill ok">Actief</span>{% else %}<span class="pill gray">Uit</span>{% endif %}
+      <span class="muted">slug: <code>{{ city.slug }}</code> · {{ ns.on }}/{{ ns.total }} scrapers aan</span>
+    </summary>
+
+    <div class="row" style="margin:14px 0">
+      <form method="post" style="margin:0">
+        <input type="hidden" name="action" value="toggle_city">
+        <input type="hidden" name="id" value="{{ city.id }}">
+        <button type="submit" class="secondary">{{ 'Uitschakelen' if city.enabled else 'Inschakelen' }}</button>
+      </form>
+      <form method="post" style="margin:0">
+        <input type="hidden" name="action" value="delete_city">
+        <input type="hidden" name="id" value="{{ city.id }}">
+        <button type="submit" class="danger" onclick="return confirm('Verwijder {{ city.name }} en alle scraper-instellingen?')">Verwijder</button>
+      </form>
+    </div>
+
+    <form method="post">
+      <input type="hidden" name="action" value="save_scrapers">
+      <input type="hidden" name="id" value="{{ city.id }}">
+      <table>
+        <thead>
+          <tr><th>Scraper</th><th>Type</th><th>Aan</th><th>Eigen URL (override)</th><th>Preview</th></tr>
+        </thead>
+        <tbody>
+          {% for sc in city.scrapers %}
+            {% for t in sc.types %}
+              <tr>
+                {% if loop.first %}<td rowspan="{{ sc.types|length }}"><strong>{{ sc.display_name }}</strong><br><span class="muted">{{ sc.key }}</span></td>{% endif %}
+                <td><span class="pill gray">{{ t.label }}</span></td>
+                <td><input type="checkbox" name="enabled_{{ t.cs_id }}" {{ 'checked' if t.enabled else '' }}></td>
+                <td>
+                  <input type="text" name="custom_url_{{ t.cs_id }}" value="{{ t.custom_url }}"
+                    placeholder="{{ 'verplicht — geen template' if not t.has_template else 'optioneel' }}" style="width:100%">
+                </td>
+                <td>
+                  <a target="_blank" rel="noopener"
+                     href="{{ url_for('web.preview_url', scraper_key=sc.key, listing_type=t.listing_type, city_slug=city.slug, city_name=city.name, custom_url=t.custom_url) }}">
+                    Preview &rarr;
+                  </a>
+                </td>
+              </tr>
+            {% endfor %}
+          {% endfor %}
+        </tbody>
+      </table>
+      <div style="margin-top:12px"><button type="submit">Scrapers opslaan</button></div>
+    </form>
+  </details>
+{% else %}
+  <div class="card"><p class="muted">Nog geen steden. Voeg er een toe om scrapers in te schakelen.</p></div>
+{% endfor %}
+{% endblock %}

@@ -28,8 +28,15 @@ _POSTCODE_RE = re.compile(r"^\s*\d{4}\s*[A-Z]{2}\s*", re.IGNORECASE)
 _PRICE_RE = re.compile(r"€\s*[\d.,\s]+")
 
 
-class _FundaBase(BaseScraper):
-    SOURCE_NAME = "funda"
+class Funda(BaseScraper):
+    SCRAPER_KEY = "funda"
+    DISPLAY_NAME = "Funda"
+    SUPPORTED_TYPES = {"rent", "buy"}
+    URL_TEMPLATES = {
+        "rent": 'https://www.funda.nl/zoeken/huur/?selected_area=["{slug}"]',
+        "buy": 'https://www.funda.nl/zoeken/koop/?selected_area=["{slug}"]',
+    }
+
     USE_PLAYWRIGHT = True
     USE_STEALTH = True
     COOKIES_FILE = "cookies/funda.txt"
@@ -66,13 +73,13 @@ class _FundaBase(BaseScraper):
 
             address = ", ".join(p for p in (street, postcode_city) if p)
 
-            city = self.CITY_HINT
+            city = self.city_hint
             if postcode_city:
                 city_part = _POSTCODE_RE.sub("", postcode_city).strip()
                 if city_part:
                     city = city_part
 
-            price_cents = _find_price_for(addr_link)
+            price_cents = _find_price_for(addr_link, self.listing_type)
 
             out.append(
                 Listing(
@@ -88,13 +95,22 @@ class _FundaBase(BaseScraper):
         return out
 
 
-def _find_price_for(addr_link) -> int | None:
-    """Walk up to the smallest ancestor that contains both '€' and 'maand'."""
+# Buy listings price the card with "k.k." (kosten koper) or "v.o.n." (vrij op
+# naam) instead of "/maand"; match the right marker per listing type.
+_RENT_MARKER_RE = re.compile(r"maand", re.IGNORECASE)
+_BUY_MARKER_RE = re.compile(r"k\.?\s*k\.?|v\.?\s*o\.?\s*n\.?|kosten\s+koper", re.IGNORECASE)
+
+
+def _find_price_for(addr_link, listing_type: str) -> int | None:
+    """Walk up to the smallest ancestor card that contains '€' plus the
+    price marker appropriate for the listing type (rent → 'maand';
+    buy → 'k.k.'/'v.o.n.')."""
+    marker = _BUY_MARKER_RE if listing_type == "buy" else _RENT_MARKER_RE
     card = addr_link.find_parent(
         lambda t: (
             t.name == "div"
             and "€" in t.get_text()
-            and "maand" in t.get_text().lower()
+            and bool(marker.search(t.get_text()))
         )
     )
     if not card:
@@ -103,24 +119,3 @@ def _find_price_for(addr_link) -> int | None:
     if not m:
         return None
     return parse_price_to_cents(m.group(0))
-
-
-class FundaOss(_FundaBase):
-    SOURCE_NAME = "funda-oss"
-    START_URL = 'https://www.funda.nl/zoeken/huur/?selected_area=["oss"]'
-    CITY_HINT = "Oss"
-
-
-class FundaBerghem(_FundaBase):
-    SOURCE_NAME = "funda-berghem"
-    START_URL = 'https://www.funda.nl/en/zoeken/huur/?selected_area=["berghem"]'
-    CITY_HINT = "Berghem"
-
-
-class FundaDigimakelaars(_FundaBase):
-    SOURCE_NAME = "funda-digimakelaars"
-    START_URL = (
-        "https://www.funda.nl/makelaars/oss/11144-digimakelaarsnl-de-makelaar-van-nederland/"
-        "woningaanbod/huur/gemeente-oss/+10km/"
-    )
-    CITY_HINT = "Oss"

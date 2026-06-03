@@ -19,11 +19,13 @@ from .base import BaseScraper, Listing
 
 
 class EasyLeaseWonen(BaseScraper):
-    SOURCE_NAME = "easyleasewonen"
-    START_URL = (
-        "https://www.easyleasewonen.nl/woning-aanbod?offer=rent&location=Oss&maxprice=1500"
-    )
-    CITY_HINT = "Oss"
+    SCRAPER_KEY = "easyleasewonen"
+    DISPLAY_NAME = "EasyLease Wonen"
+    SUPPORTED_TYPES = {"rent"}
+    # Drop the old maxprice=1500 cap — per-recipient price caps handle that now.
+    URL_TEMPLATES = {
+        "rent": "https://www.easyleasewonen.nl/woning-aanbod?offer=rent&location={city}",
+    }
     USE_PLAYWRIGHT = True
     WAIT_FOR_SELECTOR = "a.eazlee_object"
 
@@ -45,7 +47,7 @@ class EasyLeaseWonen(BaseScraper):
             address = ", ".join(p for p in (street, postcode_city) if p)
 
             # "5345JG Oss" → "Oss"
-            city = self.CITY_HINT
+            city = self.city_hint
             if postcode_city:
                 parts = postcode_city.split()
                 if parts:

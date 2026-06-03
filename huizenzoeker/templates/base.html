@@ -44,6 +44,8 @@
     <nav>
       <a href="{{ url_for('web.houses') }}" class="{{ 'active' if request.endpoint == 'web.houses' else '' }}">Woningen</a>
       <a href="{{ url_for('web.settings_page') }}" class="{{ 'active' if request.endpoint == 'web.settings_page' else '' }}">Instellingen</a>
+      <a href="{{ url_for('web.cities_page') }}" class="{{ 'active' if request.endpoint == 'web.cities_page' else '' }}">Steden</a>
+      <a href="{{ url_for('web.scrapers_page') }}" class="{{ 'active' if request.endpoint == 'web.scrapers_page' else '' }}">Scrapers</a>
       <a href="{{ url_for('web.runs') }}" class="{{ 'active' if request.endpoint == 'web.runs' else '' }}">Runs</a>
     </nav>
   </header>

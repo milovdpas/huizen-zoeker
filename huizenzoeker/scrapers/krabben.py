@@ -24,19 +24,26 @@ _DETAIL_PATH_RE = re.compile(r"/wonen/aanbod/[^/?#]+")
 _PRICE_RE = re.compile(r"€\s*[\d.,\s]+")
 
 
+_KRABBEN_TEMPLATE = (
+    "https://www.krabben.nl/wonen/aanbod"
+    "?price_type={price_type}"
+    "&market%5B%5D=living"
+    "&market%5B%5D=new-construction"
+    "&search={{city}}"
+    "&search_type=city"
+    "&distance=10"
+    "&price_min=0"
+)
+
+
 class Krabben(BaseScraper):
-    SOURCE_NAME = "krabben"
-    START_URL = (
-        "https://www.krabben.nl/wonen/aanbod"
-        "?price_type=rental"
-        "&market%5B%5D=living"
-        "&market%5B%5D=new-construction"
-        "&search=Oss"
-        "&search_type=city"
-        "&distance=10"
-        "&price_min=0"
-    )
-    CITY_HINT = None
+    SCRAPER_KEY = "krabben"
+    DISPLAY_NAME = "Krabben Makelaars"
+    SUPPORTED_TYPES = {"rent", "buy"}
+    URL_TEMPLATES = {
+        "rent": _KRABBEN_TEMPLATE.format(price_type="rental"),
+        "buy": _KRABBEN_TEMPLATE.format(price_type="purchase"),
+    }
     USE_PLAYWRIGHT = True
     WAIT_FOR_SELECTOR = "a.group[href*='/wonen/aanbod/']"
 

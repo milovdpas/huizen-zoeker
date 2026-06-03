@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="nl">
-<head><meta charset="utf-8"><title>Nieuwe huurwoning</title></head>
+<head><meta charset="utf-8"><title>Nieuwe {{ noun }}</title></head>
 <body style="margin:0;padding:0;background:#f4f4f4;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;color:#222">
   <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#f4f4f4;padding:24px 0">
     <tr>
@@ -8,7 +8,7 @@
         <table role="presentation" width="540" cellpadding="0" cellspacing="0" style="background:white;border-radius:8px;overflow:hidden;border:1px solid #e2e2e2">
           <tr>
             <td style="padding:24px 28px;border-bottom:1px solid #eee">
-              <h1 style="margin:0;font-size:18px;color:#1a73e8">Nieuwe huurwoning gevonden</h1>
+              <h1 style="margin:0;font-size:18px;color:#1a73e8">Nieuwe {{ noun }} gevonden</h1>
             </td>
           </tr>
           <tr>
@@ -20,7 +20,7 @@
               <p style="margin:0 0 18px;font-size:16px;font-weight:600">{{ house.address_raw }}</p>
 
               <p style="margin:0 0 8px;font-size:13px;color:#666">Prijs</p>
-              <p style="margin:0 0 24px;font-size:16px;font-weight:600">{{ price_str }} per maand</p>
+              <p style="margin:0 0 24px;font-size:16px;font-weight:600">{{ price_str }} ({{ price_suffix }})</p>
 
               <p style="margin:0 0 8px;font-size:13px;color:#666">Bron</p>
               <p style="margin:0 0 24px;font-size:14px">{{ house.source }}</p>

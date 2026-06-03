@@ -1,46 +1,78 @@
 {% extends "base.html" %}
 {% block title %}Instellingen — Huizen Zoeker{% endblock %}
 {% block content %}
+
+{% macro pref_fields(r) %}
+  <div class="row" style="gap:18px;align-items:flex-start;flex-wrap:wrap">
+    <fieldset style="border:1px solid var(--border);border-radius:6px;padding:10px 14px;margin:0">
+      <legend class="muted">Huur</legend>
+      <label><input type="checkbox" name="wants_rent" {{ 'checked' if (r and r.wants_rent) else '' }}> Huur ontvangen</label>
+      <div style="margin-top:6px">max € <input type="number" name="max_rent" min="0" step="1" value="{{ r.max_rent_eur if r else '' }}" style="width:100px" placeholder="geen limiet"></div>
+    </fieldset>
+    <fieldset style="border:1px solid var(--border);border-radius:6px;padding:10px 14px;margin:0">
+      <legend class="muted">Koop</legend>
+      <label><input type="checkbox" name="wants_buy" {{ 'checked' if (r and r.wants_buy) else '' }}> Koop ontvangen</label>
+      <div style="margin-top:6px">max € <input type="number" name="max_buy" min="0" step="1" value="{{ r.max_buy_eur if r else '' }}" style="width:100px" placeholder="geen limiet"></div>
+    </fieldset>
+    <fieldset style="border:1px solid var(--border);border-radius:6px;padding:10px 14px;margin:0;flex:1;min-width:240px">
+      <legend class="muted">Steden</legend>
+      {% if cities %}
+        {% for c in cities %}
+          <label style="display:inline-block;margin-right:14px">
+            <input type="checkbox" name="city_ids" value="{{ c.id }}"
+              {{ 'checked' if (r and c.id in r.city_ids) else '' }}> {{ c.name }}
+          </label>
+        {% endfor %}
+      {% else %}
+        <span class="muted">Nog geen steden — voeg ze toe bij <a href="{{ url_for('web.cities_page') }}">Steden</a>.</span>
+      {% endif %}
+    </fieldset>
+  </div>
+{% endmacro %}
+
 <div class="card">
-  <h2>Maximale prijs</h2>
-  <p class="muted">Boven dit bedrag worden geen e-mails verstuurd. 0 of leeg = geen limiet. Woningen worden wel altijd opgeslagen.</p>
-  <form method="post" class="row">
-    <input type="hidden" name="action" value="save_max_price">
-    <label>€ <input type="number" name="max_price" min="0" step="1" value="{{ max_price_eur }}"></label>
-    <button type="submit">Opslaan</button>
+  <h2>Ontvanger toevoegen</h2>
+  <p class="muted">Iedere ontvanger kiest zelf steden, huur en/of koop, en een aparte maximumprijs per type. Leeg of 0 = geen limiet.</p>
+  <form method="post">
+    <input type="hidden" name="action" value="add_email">
+    <div class="row" style="margin-bottom:12px">
+      <input type="email" name="email" placeholder="naam@example.com" required style="min-width:280px">
+    </div>
+    {{ pref_fields(none) }}
+    <div style="margin-top:14px"><button type="submit">Toevoegen</button></div>
   </form>
 </div>
 
 <div class="card">
-  <h2>E-mailadressen voor notificaties</h2>
-  <p class="muted">Iedereen op deze lijst krijgt een e-mail per nieuwe woning die binnen de maxprijs valt.</p>
-
-  <form method="post" class="row" style="margin-bottom:14px">
-    <input type="hidden" name="action" value="add_email">
-    <input type="email" name="email" placeholder="naam@example.com" required style="min-width:280px">
-    <button type="submit">Toevoegen</button>
-  </form>
-
+  <h2>Ontvangers</h2>
   {% if recipients %}
-    <table>
-      <thead><tr><th>E-mail</th><th></th></tr></thead>
-      <tbody>
-        {% for r in recipients %}
-          <tr>
-            <td>{{ r.email }}</td>
-            <td style="text-align:right">
-              <form method="post" style="display:inline">
-                <input type="hidden" name="action" value="delete_email">
-                <input type="hidden" name="id" value="{{ r.id }}">
-                <button type="submit" class="danger" onclick="return confirm('Verwijder {{ r.email }}?')">Verwijder</button>
-              </form>
-            </td>
-          </tr>
-        {% endfor %}
-      </tbody>
-    </table>
+    {% for r in recipients %}
+      <div style="border:1px solid var(--border);border-radius:6px;padding:14px;margin-bottom:14px">
+        <form method="post">
+          <input type="hidden" name="action" value="edit_email">
+          <input type="hidden" name="id" value="{{ r.id }}">
+          <div class="row" style="justify-content:space-between;margin-bottom:10px">
+            <strong>{{ r.email }}</strong>
+            <span class="muted">
+              {% if r.wants_rent %}<span class="pill gray">Huur</span>{% endif %}
+              {% if r.wants_buy %}<span class="pill gray">Koop</span>{% endif %}
+              {{ r.city_ids|length }} stad(en)
+            </span>
+          </div>
+          {{ pref_fields(r) }}
+          <div class="row" style="margin-top:12px">
+            <button type="submit">Opslaan</button>
+          </div>
+        </form>
+        <form method="post" style="margin-top:8px">
+          <input type="hidden" name="action" value="delete_email">
+          <input type="hidden" name="id" value="{{ r.id }}">
+          <button type="submit" class="danger" onclick="return confirm('Verwijder {{ r.email }}?')">Verwijder ontvanger</button>
+        </form>
+      </div>
+    {% endfor %}
   {% else %}
-    <p class="muted">Nog geen ontvangers. Voeg er minstens 1 toe om e-mails te ontvangen.</p>
+    <p class="muted">Nog geen ontvangers.</p>
   {% endif %}
 </div>
 {% endblock %}

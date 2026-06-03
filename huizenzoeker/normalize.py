@@ -23,6 +23,24 @@ def normalize_address(raw: str) -> str:
     return s
 
 
+_SLUG_NON_ALNUM_RE = re.compile(r"[^a-z0-9]+")
+
+
+def slugify(name: str) -> str:
+    """Lowercase, strip diacritics, replace non-alphanumerics with hyphens.
+
+    Reuses the NFKD/strip-diacritics logic from normalize_address so city
+    slugs are derived consistently (e.g. "'s-Hertogenbosch" → "s-hertogenbosch").
+    """
+    if not name:
+        return ""
+    s = unicodedata.normalize("NFKD", name)
+    s = "".join(c for c in s if not unicodedata.combining(c))
+    s = s.lower()
+    s = _SLUG_NON_ALNUM_RE.sub("-", s)
+    return s.strip("-")
+
+
 _PRICE_NUM_RE = re.compile(r"\d[\d.,\s]*")
 
 
@@ -32,7 +50,8 @@ def parse_price_to_cents(text: Optional[str]) -> Optional[int]:
         return None
     cleaned = text.replace(" ", " ")
     cleaned = re.sub(
-        r"[€$£]|p/m|per\s+maand|excl\.?|incl\.?|EUR|euro|,-",
+        r"[€$£]|p/m|per\s+maand|excl\.?|incl\.?|EUR|euro|,-"
+        r"|kosten\s+koper|k\.?\s*k\.?|v\.?\s*o\.?\s*n\.?",
         " ",
         cleaned,
         flags=re.IGNORECASE,

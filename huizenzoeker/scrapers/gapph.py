@@ -24,9 +24,12 @@ from .base import BaseScraper, Listing
 
 
 class Gapph(BaseScraper):
-    SOURCE_NAME = "gapph"
-    START_URL = "https://www.gapph.nl/woonruimte/zoeken?region_search=oss"
-    CITY_HINT = "Oss"
+    SCRAPER_KEY = "gapph"
+    DISPLAY_NAME = "Gapph (tijdelijke huur)"
+    SUPPORTED_TYPES = {"rent"}
+    URL_TEMPLATES = {
+        "rent": "https://www.gapph.nl/woonruimte/zoeken?region_search={slug}",
+    }
     USE_PLAYWRIGHT = True
     WAIT_FOR_SELECTOR = "div.card-zoom"
 
@@ -49,7 +52,7 @@ class Gapph(BaseScraper):
             price_el = card.select_one("div.ribbon span")
             desc_el = card.select_one("p.text-xl, p.leading-relaxed")
 
-            city = city_el.get_text(" ", strip=True) if city_el else self.CITY_HINT
+            city = city_el.get_text(" ", strip=True) if city_el else self.city_hint
             type_text = type_el.get_text(" ", strip=True) if type_el else ""
             price_text = price_el.get_text(" ", strip=True) if price_el else None
             description = desc_el.get_text(" ", strip=True) if desc_el else ""

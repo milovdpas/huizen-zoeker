@@ -22,11 +22,13 @@ from .base import BaseScraper, Listing
 
 
 class DeLeygraaf(BaseScraper):
-    SOURCE_NAME = "deleygraaf"
-    START_URL = (
-        "https://www.makelaardijdeleygraaf.nl/aanbod/woningaanbod/OSS/+10km/huur/"
-    )
-    CITY_HINT = None
+    SCRAPER_KEY = "deleygraaf"
+    DISPLAY_NAME = "Makelaardij de Leygraaf"
+    SUPPORTED_TYPES = {"rent", "buy"}
+    URL_TEMPLATES = {
+        "rent": "https://www.makelaardijdeleygraaf.nl/aanbod/woningaanbod/{slug_upper}/+10km/huur/",
+        "buy": "https://www.makelaardijdeleygraaf.nl/aanbod/woningaanbod/{slug_upper}/+10km/koop/",
+    }
     USE_PLAYWRIGHT = True
     WAIT_FOR_SELECTOR = "li.al4woning, .geen-resultaten, body"
 
@@ -35,12 +37,16 @@ class DeLeygraaf(BaseScraper):
         out: list[Listing] = []
         seen: set[str] = set()
 
+        # The page can render the other type's listings when the requested type
+        # is empty; restrict to hrefs matching the type we asked for.
+        wanted_segment = "/koop/" if self.listing_type == "buy" else "/huur/"
+
         for card in soup.select("li.al4woning"):
             link = card.select_one("a.aanbodEntryLink[href]")
             if not link:
                 continue
             href = link.get("href") or ""
-            if "/huur/" not in href.lower():
+            if wanted_segment not in href.lower():
                 continue
 
             full_url = urljoin(self.START_URL, href)

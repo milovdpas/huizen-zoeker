@@ -20,6 +20,13 @@
   <form method="get" action="{{ url_for('web.houses') }}" class="row" style="margin-bottom:14px">
     <input type="hidden" name="sort" value="{{ sort }}">
     <input type="hidden" name="dir" value="{{ direction }}">
+    <label>Type
+      <select name="type">
+        <option value="" {{ 'selected' if not filters.type else '' }}>Alle</option>
+        <option value="rent" {{ 'selected' if filters.type == 'rent' else '' }}>Huur</option>
+        <option value="buy" {{ 'selected' if filters.type == 'buy' else '' }}>Koop</option>
+      </select>
+    </label>
     <label>Min € <input type="number" name="min_price" min="0" step="1" value="{{ filters.min_price }}" style="width:90px"></label>
     <label>Max € <input type="number" name="max_price" min="0" step="1" value="{{ filters.max_price }}" style="width:90px"></label>
     <label>Eerst gezien sinds <input type="date" name="since" value="{{ filters.since }}"></label>
@@ -46,10 +53,11 @@
         <tr>
           <th>Adres</th>
           <th>Plaats</th>
+          <th>Type</th>
           <th>{{ sort_header('Prijs', 'price') }}</th>
           <th>Bron</th>
           <th>{{ sort_header('Eerst gezien', 'first_seen') }}</th>
-          <th>Status</th>
+          <th>Gemeld</th>
           <th></th>
         </tr>
       </thead>
@@ -58,14 +66,15 @@
           <tr>
             <td>{{ h.address_raw }}</td>
             <td>{{ h.city or '-' }}</td>
+            <td><span class="pill {{ 'ok' if h.listing_type == 'buy' else 'gray' }}">{{ h.listing_type | ltype }}</span></td>
             <td>{{ h.price_cents | eur }}</td>
             <td><span class="pill gray">{{ h.source }}</span></td>
             <td class="muted">{{ h.first_seen | dt }}</td>
             <td>
-              {% if h.notified %}
-                <span class="pill ok">Gemeld</span>
+              {% if h.notif_count %}
+                <span class="pill ok" title="Verstuurd naar {{ h.notif_count }} ontvanger(s)">{{ h.notif_count }}×</span>
               {% else %}
-                <span class="pill gray">Niet gemeld</span>
+                <span class="pill gray">—</span>
               {% endif %}
             </td>
             <td><a href="{{ h.source_url }}" target="_blank" rel="noopener">Bekijk &rarr;</a></td>

@@ -36,9 +36,16 @@ class Listing:
 
 
 class BaseScraper:
+    # --- identity / parametrization ---
+    SCRAPER_KEY: str = ""           # stable id used as the registry key, e.g. "funda"
+    DISPLAY_NAME: str = ""          # human label for the UI
+    SUPPORTED_TYPES: set[str] = {"rent"}   # subset of {"rent", "buy"}
+    # {"rent": "...{slug}...", "buy": "..."} — empty => custom-URL only.
+    # Placeholders: {slug} (lowercase), {slug_upper}, {city} (display name).
+    URL_TEMPLATES: dict[str, str] = {}
+
     SOURCE_NAME: str = ""
     START_URL: str = ""
-    CITY_HINT: Optional[str] = None
     USE_PLAYWRIGHT: bool = True
     WAIT_FOR_SELECTOR: Optional[str] = None  # only used with playwright
     # Try each in order before waiting for content. First match is clicked.
@@ -55,6 +62,55 @@ class BaseScraper:
     ADDRESS_SELECTOR: Optional[str] = None
     PRICE_SELECTOR: Optional[str] = None
     TITLE_SELECTOR: Optional[str] = None
+
+    @classmethod
+    def build_url(
+        cls,
+        *,
+        city_slug: str,
+        city_name: str,
+        listing_type: str,
+        custom_url: Optional[str] = None,
+    ) -> Optional[str]:
+        """Single source of truth for a scraper's search URL.
+
+        custom_url wins; otherwise render the template for listing_type
+        ({slug}, {slug_upper}, {city}); otherwise None (custom-URL only).
+        Used by both the runner and the Settings preview links so the preview
+        is byte-identical to what gets fetched.
+        """
+        if custom_url:
+            return custom_url
+        template = cls.URL_TEMPLATES.get(listing_type)
+        if not template:
+            return None
+        return template.format(
+            slug=city_slug or "",
+            slug_upper=(city_slug or "").upper(),
+            city=city_name or "",
+        )
+
+    def __init__(
+        self,
+        *,
+        city_name: str,
+        city_slug: str,
+        listing_type: str,
+        url_override: Optional[str] = None,
+    ) -> None:
+        self.city_name = city_name
+        self.city_slug = city_slug
+        self.listing_type = listing_type
+        self.city_hint = city_name
+        self.START_URL = self.build_url(
+            city_slug=city_slug,
+            city_name=city_name,
+            listing_type=listing_type,
+            custom_url=url_override,
+        ) or ""
+        # Descriptive label used in logs and ScrapeRun.source stays the key,
+        # but logging benefits from the city/type context.
+        self.SOURCE_NAME = f"{self.SCRAPER_KEY}:{city_slug}:{listing_type}"
 
     def fetch(self) -> str:
         if self.USE_PLAYWRIGHT:
@@ -129,7 +185,7 @@ class BaseScraper:
                     Listing(
                         source_url=href,
                         address_raw=address,
-                        city=self.CITY_HINT,
+                        city=self.city_hint,
                         price_cents=parse_price_to_cents(price_text or ""),
                         raw_title=title or address,
                     )
@@ -162,7 +218,7 @@ class BaseScraper:
                 Listing(
                     source_url=full,
                     address_raw=address,
-                    city=self.CITY_HINT,
+                    city=self.city_hint,
                     price_cents=parse_price_to_cents(price_match.group(0)) if price_match else None,
                     raw_title=address,
                 )
